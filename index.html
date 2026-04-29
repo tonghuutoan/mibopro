@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N46FHR5227"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N46FHR5227');
+</script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>MIBO — Mekong Invention Back Office | Công ty Phần mềm & AI</title>
@@ -8,6 +17,253 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav class="navbar">
+  <a href="#" class="nav-logo" onclick="navigate('home')">
+    <div class="nav-logo-icon">M</div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">MIBO</span>
+      <span class="nav-logo-tag">AI &amp; AUTO</span>
+    </div>
+  </a>
+  <div class="nav-search">
+    <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm, dịch vụ..." onkeydown="if(event.key==='Enter')doSearch()"/>
+    <button onclick="doSearch()"><i class="ri-search-line"></i></button>
+  </div>
+  <div class="nav-right">
+    <a href="tel:0375124681" class="nav-phone"><i class="ri-phone-line"></i>0375.124681</a>
+    <button class="nav-hamburger" onclick="toggleMenu()"><i class="ri-menu-3-line"></i></button>
+  </div>
+</nav>
+
+<!-- ═══════════════ SIDE MENU ═══════════════ -->
+<div class="side-menu-overlay" id="sideOverlay" onclick="toggleMenu()"></div>
+<div class="side-menu" id="sideMenu">
+  <div class="side-menu-header">
+    <span class="side-menu-logo">MIBO</span>
+    <button class="side-menu-close" onclick="toggleMenu()"><i class="ri-close-line"></i></button>
+  </div>
+  <div class="side-menu-links">
+    <a href="javascript:void(0)" onclick="navigate('rd');toggleMenu()"><i class="ri-flask-line"></i>Năng lực R&amp;D</a>
+    <a href="index.html" onclick="navigate('products-page');toggleMenu()"><i class="ri-apps-2-line"></i> Sản phẩm</a>
+    <a href="javascript:void(0)" onclick="navigate('blog');toggleMenu()"><i class="ri-book-open-line"></i>Thư viện / Blog</a>
+    <a href="javascript:void(0)" onclick="navigate('events');toggleMenu()"><i class="ri-calendar-event-line"></i>Sự kiện</a>
+    <a href="javascript:void(0)" onclick="navigate('contact');toggleMenu()"><i class="ri-customer-service-line"></i>Liên hệ</a>
+    <a href="javascript:void(0)" onclick="navigate('privacy');toggleMenu()"><i class="ri-shield-check-line"></i>Bảo mật</a>
+    <a href="javascript:void(0)" onclick="navigate('terms');toggleMenu()"><i class="ri-file-text-line"></i>Điều khoản</a>
+  </div>
+  <div class="side-menu-footer">
+    <a href="tel:0375124681"><i class="ri-phone-fill"></i>0375.124681</a>
+  </div>
+</div>
+
+<!-- ═══════════════ PAGES CONTAINER ═══════════════ -->
+<div id="page-home" class="page-view active">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-badge"><i class="ri-sparkling-line"></i>Giải pháp công nghệ thế hệ mới</div>
+    <h1 class="hero-h1">CÔNG TY<br><span>PHẦN MỀM &amp; AI</span></h1>
+    <p class="hero-sub">Chuyên thiết kế <strong>WEBSITE</strong> — <strong>PHẦN MỀM DI ĐỘNG</strong> — <strong>PHẦN MỀM DOANH NGHIỆP</strong> — <strong>GIẢI PHÁP TỰ ĐỘNG HÓA</strong></p>
+    <div class="hero-pills">
+      <span class="hero-pill"><i class="ri-global-line"></i> Website</span>
+      <span class="hero-pill"><i class="ri-smartphone-line"></i> App Mobile</span>
+      <span class="hero-pill"><i class="ri-building-line"></i> Phần mềm DN</span>
+      <span class="hero-pill"><i class="ri-robot-line"></i> AI &amp; Tự động hóa</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#services" class="btn-red"><i class="ri-rocket-line"></i>Xem dịch vụ</a>
+      <a href="tel:0375124681" class="btn-outline"><i class="ri-customer-service-line"></i>Tư vấn miễn phí</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-val">500+</div><div class="hero-stat-lbl">Dự án</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">98%</div><div class="hero-stat-lbl">Hài lòng</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">10+</div><div class="hero-stat-lbl">Năm kinh nghiệm</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">24/7</div><div class="hero-stat-lbl">Hỗ trợ</div></div>
+    </div>
+  </div>
+  <div class="scroll-indicator"><i class="ri-arrow-down-line"></i><span>Cuộn xuống</span></div>
+</section>
+
+<!-- POPULAR SERVICES -->
+<section class="section" id="services" style="background:#fff">
+  <div class="section-inner">
+    <h2 class="section-title fade-up">Sản Phẩm &amp; Dịch Vụ Phổ Biến</h2>
+    <p class="section-sub fade-up">Các nền tảng quảng cáo & bán hàng online hàng đầu — giải pháp trọn gói từ thiết kế đến vận hành</p>
+    <div class="divider"></div>
+    <div class="services-grid fade-up">
+      <a href="#" onclick="navigate('google-map-pricing')" class="service-card">
+        <div class="service-card-header" style="background:linear-gradient(135deg,#ff0000,#bd0202)">
+          <div class="service-card-icon"><i class="ri-map-pin-line"></i></div>
+          <div class="service-card-name">Google Map</div>
+        </div>
+        <div class="service-card-body">
+          <p class="service-card-desc">Tối ưu Google Business, SEO bản đồ, tăng khách hàng địa phương</p>
+          <button class="btn-sm-red"><i class="ri-price-tag-3-line"></i>Xem Bảng Giá</button>
+        </div>
+      </a>
+      <a href="#" onclick="navigate('tiktok-pricing')" class="service-card">
+        <div class="service-card-header" style="background:linear-gradient(135deg,#ff0000,#bd0202)">
+          <div class="service-card-icon"><i class="ri-tiktok-line"></i></div>
+          <div class="service-card-name">TikTok Shop</div>
+        </div>
+        <div class="service-card-body">
+          <p class="service-card-desc">Setup TikTok Shop, livestream bán hàng, quảng cáo TikTok Ads</p>
+          <button class="btn-sm-red"><i class="ri-price-tag-3-line"></i>Xem Bảng Giá</button>
+        </div>
+      </a>
+      <a href="#" onclick="navigate('facebook-pricing')" class="service-card">
+        <div class="service-card-header" style="background:linear-gradient(135deg,#ff0000,#bd0202)">
+          <div class="service-card-icon"><i class="ri-facebook-circle-line"></i></div>
+          <div class="service-card-name">Facebook Shop</div>
+        </div>
+        <div class="service-card-body">
+          <p class="service-card-desc">Quản lý Fanpage, Facebook Ads, shop online tích hợp</p>
+          <button class="btn-sm-red"><i class="ri-price-tag-3-line"></i>Xem Bảng Giá</button>
+        </div>
+      </a>
+      <a href="#" onclick="navigate('youtube-pricing')" class="service-card">
+        <div class="service-card-header" style="background:linear-gradient(135deg,#ff0000,#bd0202)">
+          <div class="service-card-icon"><i class="ri-youtube-line"></i></div>
+          <div class="service-card-name">YouTube</div>
+        </div>
+        <div class="service-card-body">
+          <p class="service-card-desc">Sản xuất video, SEO YouTube, chạy quảng cáo Google Ads</p>
+          <button class="btn-sm-red"><i class="ri-price-tag-3-line"></i>Xem Bảng Giá</button>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT SECTIONS (11 sections) -->
+<div id="product-sections-container"></div>
+
+<!-- MAP SECTION -->
+<section class="map-section">
+  <div class="section-inner">
+    <h2 class="section-title fade-up">Vị Trí Của Chúng Tôi</h2>
+    <div class="divider"></div>
+    <div class="map-wrap fade-up">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62828.29690660432!2d106.33646672248302!3d10.199441313675683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310aa9006aa2cd2d%3A0x7e08963c701f0139!2zQ8O0bmcgdHkgcGjhuqduIG3hu4FtIE1JQk8!5e0!3m2!1svi!2s!4v1777423545834!5m2!1svi!2s" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="map-info fade-up">
+      <div class="map-info-item"><i class="ri-map-pin-line"></i><span>124 Kp. Long Thuận, P. An Hội, Vĩnh Long</span></div>
+      <div class="map-info-item"><i class="ri-phone-line"></i><a href="tel:0375124681" style="color:inherit;text-decoration:none">0375.124681</a></div>
+      <div class="map-info-item"><i class="ri-mail-line"></i><a href="mailto:kido@mibo.mobi" style="color:inherit;text-decoration:none">kido@mibo.mobi</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">MIBO</div>
+        <div class="footer-brand-desc">Mekong Invention Back Office — Công ty phần mềm & AI, đồng hành cùng doanh nghiệp trong kỷ nguyên số.</div>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/mibofb" target="_blank" class="footer-social"><i class="ri-facebook-fill"></i></a>
+          <a href="https://www.youtube.com/channel/UCX8q34yph6lCXT87D0XO1tQ" target="_blank" class="footer-social"><i class="ri-youtube-fill"></i></a>
+          <a href="https://www.linkedin.com/in/mekong-invention-back-office-579257260/" target="_blank" class="footer-social"><i class="ri-linkedin-fill"></i></a>
+          <a href="https://www.instagram.com/mib.office/" target="_blank" class="footer-social"><i class="ri-instagram-fill"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Dịch vụ</div>
+        <div class="footer-links">
+          <a href="javascript:void(0)" onclick="navigate('website-pricing')"><i class="ri-arrow-right-s-line"></i>Website doanh nghiệp</a>
+          <a href="javascript:void(0)" onclick="navigate('website-ban-hang-pricing')"><i class="ri-arrow-right-s-line"></i>Website bán hàng</a>
+          <a href="javascript:void(0)" onclick="navigate('landing-page-pricing')"><i class="ri-arrow-right-s-line"></i>Landing Page</a>
+          <a href="javascript:void(0)" onclick="navigate('phan-mem-crm-pricing')"><i class="ri-arrow-right-s-line"></i>Phần mềm CRM</a>
+          <a href="javascript:void(0)" onclick="navigate('phan-mem-quan-ly-pricing')"><i class="ri-arrow-right-s-line"></i>PM Quản lý</a>
+          <a href="javascript:void(0)" onclick="navigate('tu-dong-hoa-quy-trinh')"><i class="ri-arrow-right-s-line"></i>Tự động hóa quy trình</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Sản phẩm</div>
+        <div class="footer-links">
+          <a href="javascript:void(0)" onclick="navigate('google-map-pricing')"><i class="ri-arrow-right-s-line"></i>Google Map</a>
+          <a href="javascript:void(0)" onclick="navigate('tiktok-pricing')"><i class="ri-arrow-right-s-line"></i>TikTok Shop</a>
+          <a href="javascript:void(0)" onclick="navigate('facebook-pricing')"><i class="ri-arrow-right-s-line"></i>Facebook Shop</a>
+          <a href="javascript:void(0)" onclick="navigate('youtube-pricing')"><i class="ri-arrow-right-s-line"></i>YouTube</a>
+          <a href="javascript:void(0)" onclick="navigate('giai-phap-cloud')"><i class="ri-arrow-right-s-line"></i>Giải pháp Cloud</a>
+          <a href="javascript:void(0)" onclick="navigate('phan-tich-du-lieu')"><i class="ri-arrow-right-s-line"></i>Phân tích dữ liệu</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Liên hệ</div>
+        <div class="footer-contact-item"><i class="ri-map-pin-line"></i><span>124 Kp. Long Thuận, P. An Hội, Vĩnh Long</span></div>
+        <div class="footer-contact-item"><i class="ri-phone-line"></i><a href="tel:0375124681" style="color:inherit;text-decoration:none">0375.124681</a></div>
+        <div class="footer-contact-item"><i class="ri-mail-line"></i><a href="mailto:kido@mibo.mobi" style="color:inherit;text-decoration:none">kido@mibo.mobi</a></div>
+        <div class="footer-hours">
+          <div><span>Thứ 2 – Thứ 6</span><span>8:00 – 22:00</span></div>
+          <div><span>Thứ 7</span><span>8:00 – 12:00</span></div>
+          <div><span>Chủ nhật</span><span>Nghỉ</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MIBO — Mekong Invention Back Office. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#" onclick="navigate('privacy')">Bảo mật</a>
+        <a href="#" onclick="navigate('terms')">Điều khoản</a>
+        <a href="#" onclick="navigate('contact')">Liên hệ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- end page-home -->
+
+<!-- ═══════════════ SUB-PAGES ═══════════════ -->
+<div id="page-pricing" class="page-view"></div>
+<div id="page-auth" class="page-view"></div>
+<div id="page-blog" class="page-view"></div>
+<div id="page-events" class="page-view"></div>
+<div id="page-contact" class="page-view"></div>
+<div id="page-privacy" class="page-view"></div>
+<div id="page-terms" class="page-view"></div>
+<div id="page-product-detail" class="page-view"></div>
+<div id="page-404" class="page-view"></div>
+<div id="page-rd" class="page-view"></div>
+<div id="page-digital-transform" class="page-view"></div>
+
+<!-- ═══════════════ BOTTOM NAV ═══════════════ -->
+<nav class="bottom-nav">
+  <a class="bottom-nav-item active" id="bnav-home" onclick="navigate('home')"><i class="ri-home-5-line"></i><span>Trang chủ</span></a>
+  <div class="dropdown-wrapper">
+    <div class="bottom-nav-item" id="bnav-products" onclick="toggleDropdown('dd-products')">
+      <i class="ri-apps-2-line"></i><span>Sản phẩm</span>
+    </div>
+    <div class="dropdown-menu" id="dd-products">
+      <a class="dropdown-item" href="#" onclick="navigate('website-pricing');closeDropdowns()"><i class="ri-global-line"></i>Website</a>
+      <a class="dropdown-item" href="#" onclick="navigate('android');closeDropdowns()"><i class="ri-android-line"></i>App Android</a>
+      <a class="dropdown-item" href="#" onclick="navigate('ios');closeDropdowns()"><i class="ri-apple-line"></i>App iOS</a>
+      <a class="dropdown-item" href="#" onclick="navigate('app-pc');closeDropdowns()"><i class="ri-computer-line"></i>App PC</a>
+      <a class="dropdown-item" href="#" onclick="navigate('tu-van-chuyen-doi-so');closeDropdowns()"><i class="ri-exchange-line"></i>Chuyển đổi số</a>
+      <a class="dropdown-item" href="#" onclick="navigate('chatbot');closeDropdowns()"><i class="ri-chat-3-line"></i>Chat Bot</a>
+      <a class="dropdown-item" href="#" onclick="navigate('ai-noi-bo');closeDropdowns()"><i class="ri-robot-line"></i>AI nội bộ</a>
+      <a class="dropdown-item" href="#" onclick="navigate('doanh-nghiep-tu-dong');closeDropdowns()"><i class="ri-organization-chart"></i>DN Tự động</a>
+    </div>
+  </div>
+  <a class="bottom-nav-item call-btn" href="tel:0375124681"><i class="ri-phone-fill"></i><span>Gọi ngay</span></a>
+  <a class="bottom-nav-item" id="bnav-events" onclick="navigate('events')"><i class="ri-calendar-event-line"></i><span>Sự kiện</span></a>
+  <div class="dropdown-wrapper">
+    <div class="bottom-nav-item" id="bnav-profile" onclick="toggleDropdown('dd-profile')">
+      <i class="ri-user-line"></i><span>Hồ sơ</span>
+    </div>
+    <div class="dropdown-menu" id="dd-profile">
+      <a class="btn-login" href="#" onclick="navigate('auth');closeDropdowns()"><i class="ri-login-box-line"></i>Đăng nhập</a>
+    </div>
+  </div>
+</nav>
 <style>
 :root {
   --red: #dc2626;
@@ -280,254 +536,6 @@ footer{background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;padding:52p
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 </style>
-</head>
-<body>
-
-<!-- ═══════════════ NAVBAR ═══════════════ -->
-<nav class="navbar">
-  <a href="#" class="nav-logo" onclick="navigate('home')">
-    <div class="nav-logo-icon">M</div>
-    <div class="nav-logo-text">
-      <span class="nav-logo-name">MIBO</span>
-      <span class="nav-logo-tag">AI &amp; AUTO</span>
-    </div>
-  </a>
-  <div class="nav-search">
-    <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm, dịch vụ..." onkeydown="if(event.key==='Enter')doSearch()"/>
-    <button onclick="doSearch()"><i class="ri-search-line"></i></button>
-  </div>
-  <div class="nav-right">
-    <a href="tel:0375124681" class="nav-phone"><i class="ri-phone-line"></i>0375.124681</a>
-    <button class="nav-hamburger" onclick="toggleMenu()"><i class="ri-menu-3-line"></i></button>
-  </div>
-</nav>
-
-<!-- ═══════════════ SIDE MENU ═══════════════ -->
-<div class="side-menu-overlay" id="sideOverlay" onclick="toggleMenu()"></div>
-<div class="side-menu" id="sideMenu">
-  <div class="side-menu-header">
-    <span class="side-menu-logo">MIBO</span>
-    <button class="side-menu-close" onclick="toggleMenu()"><i class="ri-close-line"></i></button>
-  </div>
-  <div class="side-menu-links">
-    <a href="javascript:void(0)" onclick="navigate('rd');toggleMenu()"><i class="ri-flask-line"></i>Năng lực R&amp;D</a>
-    <a href="index.html" onclick="navigate('products-page');toggleMenu()"><i class="ri-apps-2-line"></i> Sản phẩm</a>
-    <a href="javascript:void(0)" onclick="navigate('blog');toggleMenu()"><i class="ri-book-open-line"></i>Thư viện / Blog</a>
-    <a href="javascript:void(0)" onclick="navigate('events');toggleMenu()"><i class="ri-calendar-event-line"></i>Sự kiện</a>
-    <a href="javascript:void(0)" onclick="navigate('contact');toggleMenu()"><i class="ri-customer-service-line"></i>Liên hệ</a>
-    <a href="javascript:void(0)" onclick="navigate('privacy');toggleMenu()"><i class="ri-shield-check-line"></i>Bảo mật</a>
-    <a href="javascript:void(0)" onclick="navigate('terms');toggleMenu()"><i class="ri-file-text-line"></i>Điều khoản</a>
-  </div>
-  <div class="side-menu-footer">
-    <a href="tel:0375124681"><i class="ri-phone-fill"></i>0375.124681</a>
-  </div>
-</div>
-
-<!-- ═══════════════ PAGES CONTAINER ═══════════════ -->
-<div id="page-home" class="page-view active">
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <canvas id="hero-canvas"></canvas>
-  <div class="hero-content">
-    <div class="hero-badge"><i class="ri-sparkling-line"></i>Giải pháp công nghệ thế hệ mới</div>
-    <h1 class="hero-h1">CÔNG TY<br><span>PHẦN MỀM &amp; AI</span></h1>
-    <p class="hero-sub">Chuyên thiết kế <strong>WEBSITE</strong> — <strong>PHẦN MỀM DI ĐỘNG</strong> — <strong>PHẦN MỀM DOANH NGHIỆP</strong> — <strong>GIẢI PHÁP TỰ ĐỘNG HÓA</strong></p>
-    <div class="hero-pills">
-      <span class="hero-pill"><i class="ri-global-line"></i> Website</span>
-      <span class="hero-pill"><i class="ri-smartphone-line"></i> App Mobile</span>
-      <span class="hero-pill"><i class="ri-building-line"></i> Phần mềm DN</span>
-      <span class="hero-pill"><i class="ri-robot-line"></i> AI &amp; Tự động hóa</span>
-    </div>
-    <div class="hero-ctas">
-      <a href="#services" class="btn-red"><i class="ri-rocket-line"></i>Xem dịch vụ</a>
-      <a href="tel:0375124681" class="btn-outline"><i class="ri-customer-service-line"></i>Tư vấn miễn phí</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-val">500+</div><div class="hero-stat-lbl">Dự án</div></div>
-      <div class="hero-stat"><div class="hero-stat-val">98%</div><div class="hero-stat-lbl">Hài lòng</div></div>
-      <div class="hero-stat"><div class="hero-stat-val">10+</div><div class="hero-stat-lbl">Năm kinh nghiệm</div></div>
-      <div class="hero-stat"><div class="hero-stat-val">24/7</div><div class="hero-stat-lbl">Hỗ trợ</div></div>
-    </div>
-  </div>
-  <div class="scroll-indicator"><i class="ri-arrow-down-line"></i><span>Cuộn xuống</span></div>
-</section>
-
-<!-- POPULAR SERVICES -->
-<section class="section" id="services" style="background:#fff">
-  <div class="section-inner">
-    <h2 class="section-title fade-up">Sản Phẩm &amp; Dịch Vụ Phổ Biến</h2>
-    <p class="section-sub fade-up">Các nền tảng quảng cáo & bán hàng online hàng đầu — giải pháp trọn gói từ thiết kế đến vận hành</p>
-    <div class="divider"></div>
-    <div class="services-grid fade-up">
-      <a href="#" onclick="navigate('google-map-pricing')" class="service-card">
-        <div class="service-card-header" style="background:linear-gradient(135deg,#ff0000,#bd0202)">
-          <div class="service-card-icon"><i class="ri-map-pin-line"></i></div>
-          <div class="service-card-name">Google Map</div>
-        </div>
-        <div class="service-card-body">
-          <p class="service-card-desc">Tối ưu Google Business, SEO bản đồ, tăng khách hàng địa phương</p>
-          <button class="btn-sm-red"><i class="ri-price-tag-3-line"></i>Xem Bảng Giá</button>
-        </div>
-      </a>
-      <a href="#" onclick="navigate('tiktok-pricing')" class="service-card">
-        <div class="service-card-header" style="background:linear-gradient(135deg,#ff0000,#bd0202)">
-          <div class="service-card-icon"><i class="ri-tiktok-line"></i></div>
-          <div class="service-card-name">TikTok Shop</div>
-        </div>
-        <div class="service-card-body">
-          <p class="service-card-desc">Setup TikTok Shop, livestream bán hàng, quảng cáo TikTok Ads</p>
-          <button class="btn-sm-red"><i class="ri-price-tag-3-line"></i>Xem Bảng Giá</button>
-        </div>
-      </a>
-      <a href="#" onclick="navigate('facebook-pricing')" class="service-card">
-        <div class="service-card-header" style="background:linear-gradient(135deg,#ff0000,#bd0202)">
-          <div class="service-card-icon"><i class="ri-facebook-circle-line"></i></div>
-          <div class="service-card-name">Facebook Shop</div>
-        </div>
-        <div class="service-card-body">
-          <p class="service-card-desc">Quản lý Fanpage, Facebook Ads, shop online tích hợp</p>
-          <button class="btn-sm-red"><i class="ri-price-tag-3-line"></i>Xem Bảng Giá</button>
-        </div>
-      </a>
-      <a href="#" onclick="navigate('youtube-pricing')" class="service-card">
-        <div class="service-card-header" style="background:linear-gradient(135deg,#ff0000,#bd0202)">
-          <div class="service-card-icon"><i class="ri-youtube-line"></i></div>
-          <div class="service-card-name">YouTube</div>
-        </div>
-        <div class="service-card-body">
-          <p class="service-card-desc">Sản xuất video, SEO YouTube, chạy quảng cáo Google Ads</p>
-          <button class="btn-sm-red"><i class="ri-price-tag-3-line"></i>Xem Bảng Giá</button>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCT SECTIONS (11 sections) -->
-<div id="product-sections-container"></div>
-
-<!-- MAP SECTION -->
-<section class="map-section">
-  <div class="section-inner">
-    <h2 class="section-title fade-up">Vị Trí Của Chúng Tôi</h2>
-    <div class="divider"></div>
-    <div class="map-wrap fade-up">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62828.29690660432!2d106.33646672248302!3d10.199441313675683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310aa9006aa2cd2d%3A0x7e08963c701f0139!2zQ8O0bmcgdHkgcGjhuqduIG3hu4FtIE1JQk8!5e0!3m2!1svi!2s!4v1777423545834!5m2!1svi!2s" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    <div class="map-info fade-up">
-      <div class="map-info-item"><i class="ri-map-pin-line"></i><span>124 Kp. Long Thuận, P. An Hội, Vĩnh Long</span></div>
-      <div class="map-info-item"><i class="ri-phone-line"></i><a href="tel:0375124681" style="color:inherit;text-decoration:none">0375.124681</a></div>
-      <div class="map-info-item"><i class="ri-mail-line"></i><a href="mailto:kido@mibo.mobi" style="color:inherit;text-decoration:none">kido@mibo.mobi</a></div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand-name">MIBO</div>
-        <div class="footer-brand-desc">Mekong Invention Back Office — Công ty phần mềm & AI, đồng hành cùng doanh nghiệp trong kỷ nguyên số.</div>
-        <div class="footer-socials">
-          <a href="https://www.facebook.com/mibofb" target="_blank" class="footer-social"><i class="ri-facebook-fill"></i></a>
-          <a href="https://www.youtube.com/channel/UCX8q34yph6lCXT87D0XO1tQ" target="_blank" class="footer-social"><i class="ri-youtube-fill"></i></a>
-          <a href="https://www.linkedin.com/in/mekong-invention-back-office-579257260/" target="_blank" class="footer-social"><i class="ri-linkedin-fill"></i></a>
-          <a href="https://www.instagram.com/mib.office/" target="_blank" class="footer-social"><i class="ri-instagram-fill"></i></a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-title">Dịch vụ</div>
-        <div class="footer-links">
-          <a href="javascript:void(0)" onclick="navigate('website-pricing')"><i class="ri-arrow-right-s-line"></i>Website doanh nghiệp</a>
-          <a href="javascript:void(0)" onclick="navigate('website-ban-hang-pricing')"><i class="ri-arrow-right-s-line"></i>Website bán hàng</a>
-          <a href="javascript:void(0)" onclick="navigate('landing-page-pricing')"><i class="ri-arrow-right-s-line"></i>Landing Page</a>
-          <a href="javascript:void(0)" onclick="navigate('phan-mem-crm-pricing')"><i class="ri-arrow-right-s-line"></i>Phần mềm CRM</a>
-          <a href="javascript:void(0)" onclick="navigate('phan-mem-quan-ly-pricing')"><i class="ri-arrow-right-s-line"></i>PM Quản lý</a>
-          <a href="javascript:void(0)" onclick="navigate('tu-dong-hoa-quy-trinh')"><i class="ri-arrow-right-s-line"></i>Tự động hóa quy trình</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-title">Sản phẩm</div>
-        <div class="footer-links">
-          <a href="javascript:void(0)" onclick="navigate('google-map-pricing')"><i class="ri-arrow-right-s-line"></i>Google Map</a>
-          <a href="javascript:void(0)" onclick="navigate('tiktok-pricing')"><i class="ri-arrow-right-s-line"></i>TikTok Shop</a>
-          <a href="javascript:void(0)" onclick="navigate('facebook-pricing')"><i class="ri-arrow-right-s-line"></i>Facebook Shop</a>
-          <a href="javascript:void(0)" onclick="navigate('youtube-pricing')"><i class="ri-arrow-right-s-line"></i>YouTube</a>
-          <a href="javascript:void(0)" onclick="navigate('giai-phap-cloud')"><i class="ri-arrow-right-s-line"></i>Giải pháp Cloud</a>
-          <a href="javascript:void(0)" onclick="navigate('phan-tich-du-lieu')"><i class="ri-arrow-right-s-line"></i>Phân tích dữ liệu</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-title">Liên hệ</div>
-        <div class="footer-contact-item"><i class="ri-map-pin-line"></i><span>124 Kp. Long Thuận, P. An Hội, Vĩnh Long</span></div>
-        <div class="footer-contact-item"><i class="ri-phone-line"></i><a href="tel:0375124681" style="color:inherit;text-decoration:none">0375.124681</a></div>
-        <div class="footer-contact-item"><i class="ri-mail-line"></i><a href="mailto:kido@mibo.mobi" style="color:inherit;text-decoration:none">kido@mibo.mobi</a></div>
-        <div class="footer-hours">
-          <div><span>Thứ 2 – Thứ 6</span><span>8:00 – 22:00</span></div>
-          <div><span>Thứ 7</span><span>8:00 – 12:00</span></div>
-          <div><span>Chủ nhật</span><span>Nghỉ</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 MIBO — Mekong Invention Back Office. All rights reserved.</span>
-      <div class="footer-bottom-links">
-        <a href="#" onclick="navigate('privacy')">Bảo mật</a>
-        <a href="#" onclick="navigate('terms')">Điều khoản</a>
-        <a href="#" onclick="navigate('contact')">Liên hệ</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-</div><!-- end page-home -->
-
-<!-- ═══════════════ SUB-PAGES ═══════════════ -->
-<div id="page-pricing" class="page-view"></div>
-<div id="page-auth" class="page-view"></div>
-<div id="page-blog" class="page-view"></div>
-<div id="page-events" class="page-view"></div>
-<div id="page-contact" class="page-view"></div>
-<div id="page-privacy" class="page-view"></div>
-<div id="page-terms" class="page-view"></div>
-<div id="page-product-detail" class="page-view"></div>
-<div id="page-404" class="page-view"></div>
-<div id="page-rd" class="page-view"></div>
-<div id="page-digital-transform" class="page-view"></div>
-
-<!-- ═══════════════ BOTTOM NAV ═══════════════ -->
-<nav class="bottom-nav">
-  <a class="bottom-nav-item active" id="bnav-home" onclick="navigate('home')"><i class="ri-home-5-line"></i><span>Trang chủ</span></a>
-  <div class="dropdown-wrapper">
-    <div class="bottom-nav-item" id="bnav-products" onclick="toggleDropdown('dd-products')">
-      <i class="ri-apps-2-line"></i><span>Sản phẩm</span>
-    </div>
-    <div class="dropdown-menu" id="dd-products">
-      <a class="dropdown-item" href="#" onclick="navigate('website-pricing');closeDropdowns()"><i class="ri-global-line"></i>Website</a>
-      <a class="dropdown-item" href="#" onclick="navigate('android');closeDropdowns()"><i class="ri-android-line"></i>App Android</a>
-      <a class="dropdown-item" href="#" onclick="navigate('ios');closeDropdowns()"><i class="ri-apple-line"></i>App iOS</a>
-      <a class="dropdown-item" href="#" onclick="navigate('app-pc');closeDropdowns()"><i class="ri-computer-line"></i>App PC</a>
-      <a class="dropdown-item" href="#" onclick="navigate('tu-van-chuyen-doi-so');closeDropdowns()"><i class="ri-exchange-line"></i>Chuyển đổi số</a>
-      <a class="dropdown-item" href="#" onclick="navigate('chatbot');closeDropdowns()"><i class="ri-chat-3-line"></i>Chat Bot</a>
-      <a class="dropdown-item" href="#" onclick="navigate('ai-noi-bo');closeDropdowns()"><i class="ri-robot-line"></i>AI nội bộ</a>
-      <a class="dropdown-item" href="#" onclick="navigate('doanh-nghiep-tu-dong');closeDropdowns()"><i class="ri-organization-chart"></i>DN Tự động</a>
-    </div>
-  </div>
-  <a class="bottom-nav-item call-btn" href="tel:0375124681"><i class="ri-phone-fill"></i><span>Gọi ngay</span></a>
-  <a class="bottom-nav-item" id="bnav-events" onclick="navigate('events')"><i class="ri-calendar-event-line"></i><span>Sự kiện</span></a>
-  <div class="dropdown-wrapper">
-    <div class="bottom-nav-item" id="bnav-profile" onclick="toggleDropdown('dd-profile')">
-      <i class="ri-user-line"></i><span>Hồ sơ</span>
-    </div>
-    <div class="dropdown-menu" id="dd-profile">
-      <a class="btn-login" href="#" onclick="navigate('auth');closeDropdowns()"><i class="ri-login-box-line"></i>Đăng nhập</a>
-    </div>
-  </div>
-</nav>
-
 <script>
 // ══ DATA ══
 const productData = [
