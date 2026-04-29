@@ -1,142 +1,1050 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIBO R&D Center | Tự động hóa Toàn diện</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MIBO — Mekong Invention Back Office | Công ty Phần mềm & AI</title>
+<meta name="description" content="MIBO - Chuyên thiết kế Website, App Mobile, Phần mềm Doanh nghiệp, Giải pháp Tự động hóa & AI tại Vĩnh Long"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<style>
+:root {
+  --red: #dc2626;
+  --red-dark: #b91c1c;
+  --red-light: #ef4444;
+  --orange: #f97316;
+  --white: #ffffff;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-600: #4b5563;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+  --nav-h: 64px;
+  --bottom-h: 72px;
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-hover: 0 12px 40px rgba(220,38,38,0.18);
+  --radius: 12px;
+  --radius-lg: 20px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800);padding-top:var(--nav-h);padding-bottom:var(--bottom-h);overflow-x:hidden}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f1f1f1}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:3px}
+
+/* ── NAVBAR ── */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:900;height:var(--nav-h);background:var(--white);border-bottom:1px solid var(--gray-200);display:flex;align-items:center;padding:0 20px;gap:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0}
+.nav-logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--red),var(--orange));border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-family:var(--font-display);font-size:18px;letter-spacing:-1px}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1}
+.nav-logo-name{font-family:var(--font-display);font-size:22px;font-weight:900;color:var(--red);letter-spacing:1px}
+.nav-logo-tag{font-size:9px;font-weight:700;color:var(--orange);letter-spacing:2px;text-transform:uppercase}
+.nav-search{flex:1;max-width:420px;position:relative;display:none}
+@media(min-width:768px){.nav-search{display:block}}
+.nav-search input{width:100%;padding:9px 44px 9px 16px;border:1.5px solid var(--gray-200);border-radius:999px;font-size:13.5px;font-family:var(--font-body);outline:none;transition:.2s;background:var(--gray-50)}
+.nav-search input:focus{border-color:var(--red);background:#fff}
+.nav-search button{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:var(--red);border:none;color:#fff;width:32px;height:32px;border-radius:999px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+.nav-search button:hover{background:var(--red-dark)}
+.nav-right{display:flex;align-items:center;gap:10px;margin-left:auto;flex-shrink:0}
+.nav-phone{display:none;align-items:center;gap:6px;text-decoration:none;color:var(--gray-800);font-size:14px;font-weight:600}
+@media(min-width:640px){.nav-phone{display:flex}}
+.nav-phone i{color:var(--red);font-size:16px}
+.nav-hamburger{width:40px;height:40px;border:none;background:var(--gray-100);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--gray-800);transition:.2s}
+.nav-hamburger:hover{background:var(--red);color:#fff}
+
+/* ── SIDE MENU ── */
+.side-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1100;opacity:0;pointer-events:none;transition:.3s}
+.side-menu-overlay.open{opacity:1;pointer-events:all}
+.side-menu{position:fixed;top:0;right:0;width:280px;height:100%;background:#fff;z-index:1200;transform:translateX(100%);transition:.35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+.side-menu.open{transform:translateX(0)}
+.side-menu-header{padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--gray-100)}
+.side-menu-logo{font-family:var(--font-display);font-size:24px;font-weight:900;color:var(--red)}
+.side-menu-close{width:36px;height:36px;border:none;background:var(--gray-100);border-radius:8px;cursor:pointer;font-size:18px;color:var(--gray-600)}
+.side-menu-links{padding:20px;display:flex;flex-direction:column;gap:4px;flex:1}
+.side-menu-links a{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:10px;text-decoration:none;color:var(--gray-800);font-weight:500;font-size:15px;transition:.2s}
+.side-menu-links a:hover{background:rgba(220,38,38,.08);color:var(--red)}
+.side-menu-links a i{font-size:20px;color:var(--red);width:24px}
+.side-menu-footer{padding:20px;border-top:1px solid var(--gray-100)}
+.side-menu-footer a{display:flex;align-items:center;gap:8px;color:var(--red);text-decoration:none;font-weight:700;font-size:15px}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:calc(100vh - var(--nav-h));display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0a0a0f}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0a0f 0%,#1a0505 40%,#0d0d1a 100%)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80') center/cover;opacity:.12;mix-blend-mode:luminosity}
+#hero-canvas{position:absolute;inset:0;z-index:1}
+.hero-content{position:relative;z-index:2;text-align:center;padding:40px 20px;max-width:900px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--red);border-radius:999px;padding:6px 16px;font-size:12px;font-weight:700;color:var(--red);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px;animation:pulse-border 2s infinite}
+@keyframes pulse-border{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.4)}50%{box-shadow:0 0 0 8px rgba(220,38,38,0)}}
+.hero-h1{font-family:var(--font-display);font-size:clamp(42px,8vw,88px);font-weight:900;color:#fff;line-height:1;text-transform:uppercase;letter-spacing:-1px;margin-bottom:8px}
+.hero-h1 span{background:linear-gradient(90deg,var(--red),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(13px,2vw,17px);color:rgba(255,255,255,.7);margin-bottom:28px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.7}
+.hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:32px}
+.hero-pill{padding:6px 16px;border-radius:999px;font-size:12.5px;font-weight:600;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);background:rgba(255,255,255,.06);backdrop-filter:blur(8px)}
+.hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:40px}
+.btn-red{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:linear-gradient(135deg,var(--red),var(--orange));border:none;border-radius:999px;color:#fff;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;transition:.25s;box-shadow:0 4px 20px rgba(220,38,38,.4)}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(220,38,38,.55)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:transparent;border:2px solid rgba(255,255,255,.4);border-radius:999px;color:#fff;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;transition:.25s;backdrop-filter:blur(4px)}
+.btn-outline:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.7)}
+.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:0;border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;backdrop-filter:blur(12px);background:rgba(255,255,255,.04)}
+.hero-stat{flex:1;min-width:120px;padding:18px 12px;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
+.hero-stat:last-child{border-right:none}
+.hero-stat-val{font-family:var(--font-display);font-size:28px;font-weight:900;color:var(--red)}
+.hero-stat-lbl{font-size:11.5px;color:rgba(255,255,255,.55);margin-top:2px}
+.scroll-indicator{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:4px;color:rgba(255,255,255,.4);font-size:11px;animation:bounce-scroll 2s infinite}
+@keyframes bounce-scroll{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.scroll-indicator i{font-size:22px}
+
+/* ── SECTION BASE ── */
+.section{padding:64px 0}
+.section-inner{max-width:1200px;margin:0 auto;padding:0 20px}
+.section-title{font-family:var(--font-display);font-size:clamp(28px,5vw,44px);font-weight:900;color:var(--red);text-transform:uppercase;text-align:center;letter-spacing:1px;margin-bottom:8px}
+.section-sub{text-align:center;color:var(--gray-600);font-size:14.5px;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto}
+.divider{width:60px;height:4px;background:linear-gradient(90deg,var(--red),var(--orange));border-radius:2px;margin:12px auto 36px}
+
+/* ── POPULAR SERVICES ── */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.service-card{border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;box-shadow:var(--shadow-card);transition:.3s;text-decoration:none;display:block}
+.service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+.service-card-header{padding:28px 24px 20px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.service-card-icon{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff}
+.service-card-name{font-family:var(--font-display);font-size:22px;font-weight:800;color:#fff;text-align:center;letter-spacing:.5px}
+.service-card-body{padding:16px 24px 20px;background:#fff;text-align:center}
+.service-card-desc{font-size:13px;color:var(--gray-600);margin-bottom:14px;line-height:1.5}
+.btn-sm-red{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;background:var(--red);color:#fff;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:.2s}
+.btn-sm-red:hover{background:var(--red-dark);transform:scale(1.04)}
+
+/* ── PRODUCT SECTIONS ── */
+.product-section{padding:48px 0;background:#fff}
+.product-section:nth-child(odd){background:var(--gray-50)}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-bottom:32px}
+@media(min-width:1024px){.product-grid{grid-template-columns:repeat(4,1fr)}}
+.product-card{border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:var(--shadow-card);transition:.3s;cursor:pointer}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.12)}
+.product-card-img{width:100%;height:160px;object-fit:cover;display:block;background:linear-gradient(135deg,var(--gray-100),var(--gray-200))}
+.product-card-img-placeholder{width:100%;height:160px;display:flex;align-items:center;justify-content:center;font-size:40px}
+.product-card-body{padding:14px}
+.product-card-name{font-weight:700;font-size:14.5px;margin-bottom:6px;line-height:1.4;color:var(--gray-900)}
+.product-card-desc{font-size:12.5px;color:var(--gray-600);line-height:1.5;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-card-meta{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--gray-400);margin-bottom:12px}
+.product-card-meta i{font-size:13px}
+.product-card-actions{display:flex;gap:6px}
+.action-btn{flex:1;padding:7px 0;border:1.5px solid var(--gray-200);border-radius:8px;background:#fff;font-size:12px;color:var(--gray-600);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:.2s;font-family:var(--font-body)}
+.action-btn:hover{border-color:var(--red);color:var(--red)}
+.action-btn.liked{background:rgba(220,38,38,.06);border-color:var(--red);color:var(--red)}
+.action-btn-go{flex:0;padding:7px 10px;background:var(--red);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;transition:.2s}
+.action-btn-go:hover{background:var(--red-dark)}
+.see-all-wrap{text-align:center}
+.btn-see-all{display:inline-flex;align-items:center;gap:8px;padding:12px 36px;border:2px solid var(--red);color:var(--red);border-radius:999px;font-weight:700;font-size:14px;background:transparent;cursor:pointer;transition:.25s;text-decoration:none;font-family:var(--font-body)}
+.btn-see-all:hover{background:var(--red);color:#fff}
+
+/* ── MAP ── */
+.map-section{padding:64px 0;background:#fff}
+.map-wrap{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-card);width:100%;height:400px}
+.map-wrap iframe{width:100%;height:100%;border:0}
+.map-info{display:flex;flex-wrap:wrap;gap:20px;margin-top:28px}
+.map-info-item{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)}
+.map-info-item i{font-size:20px;color:var(--red)}
+
+/* ── FOOTER ── */
+footer{background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;padding:52px 0 28px}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 20px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:36px;margin-bottom:40px}
+.footer-brand-name{font-family:var(--font-display);font-size:28px;font-weight:900;letter-spacing:1px;margin-bottom:8px}
+.footer-brand-desc{font-size:13.5px;opacity:.85;line-height:1.7;margin-bottom:18px}
+.footer-socials{display:flex;gap:10px}
+.footer-social{width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-size:18px;transition:.2s}
+.footer-social:hover{background:rgba(255,255,255,.3);transform:translateY(-2px)}
+.footer-col-title{font-family:var(--font-display);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;opacity:.95}
+.footer-links{display:flex;flex-direction:column;gap:8px}
+.footer-links a{text-decoration:none;color:rgba(255,255,255,.8);font-size:13.5px;transition:.2s;display:flex;align-items:center;gap:6px}
+.footer-links a:hover{color:#fff;padding-left:4px}
+.footer-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:13.5px;color:rgba(255,255,255,.85)}
+.footer-contact-item i{font-size:16px;color:rgba(255,255,255,.7);margin-top:2px;flex-shrink:0}
+.footer-hours{background:rgba(0,0,0,.12);border-radius:10px;padding:14px 16px;font-size:13px;margin-top:10px}
+.footer-hours div{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-hours div:last-child{border-bottom:none}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;font-size:13px;opacity:.8}
+.footer-bottom-links{display:flex;gap:16px}
+.footer-bottom-links a{color:rgba(255,255,255,.8);text-decoration:none}
+.footer-bottom-links a:hover{color:#fff}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:950;height:var(--bottom-h);background:#fff;border-top:1px solid var(--gray-200);display:flex;align-items:stretch;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+.bottom-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;position:relative;text-decoration:none;color:var(--gray-400);font-size:10.5px;font-weight:600;transition:.2s;border:none;background:none;font-family:var(--font-body)}
+.bottom-nav-item:hover,.bottom-nav-item.active{color:var(--red)}
+.bottom-nav-item i{font-size:22px}
+.bottom-nav-item.call-btn{background:linear-gradient(135deg,var(--red),var(--orange));color:#fff;border-radius:0;margin-top:0}
+.bottom-nav-item.call-btn i{font-size:26px}
+.bottom-nav-item.call-btn:hover{background:linear-gradient(135deg,var(--red-dark),var(--red))}
+
+/* ── DROPDOWN ── */
+.dropdown-wrapper{position:relative;flex:1}
+.dropdown-menu{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#fff;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.15);min-width:220px;padding:8px;display:none;flex-direction:column;z-index:999}
+.dropdown-menu.open{display:flex}
+.dropdown-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;font-size:13.5px;font-weight:500;color:var(--gray-800);text-decoration:none;transition:.15s;cursor:pointer}
+.dropdown-item:hover{background:rgba(220,38,38,.07);color:var(--red)}
+.dropdown-item i{font-size:16px;color:var(--red);width:20px}
+.btn-login{display:flex;align-items:center;justify-content:center;gap:8px;margin:4px;padding:11px;background:linear-gradient(135deg,var(--red),var(--orange));color:#fff;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;border:none;cursor:pointer;font-family:var(--font-body)}
+
+/* ── PAGE VIEWS (SPA routing) ── */
+.page-view{display:none}
+.page-view.active{display:block}
+
+/* ── PRICING PAGES ── */
+.pricing-hero{background:linear-gradient(135deg,var(--red) 0%,var(--orange) 100%);padding:80px 20px 60px;text-align:center;color:#fff}
+.pricing-hero h1{font-family:var(--font-display);font-size:clamp(32px,6vw,60px);font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.pricing-hero p{font-size:16px;opacity:.9;max-width:540px;margin:0 auto}
+.pricing-section{padding:60px 0}
+.pricing-inner{max-width:1100px;margin:0 auto;padding:0 20px}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px}
+.pricing-card{background:#fff;border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-card);border:2px solid var(--gray-200);transition:.3s;position:relative}
+.pricing-card:hover{border-color:var(--red);transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.pricing-card.popular{border-color:var(--red);background:linear-gradient(135deg,rgba(220,38,38,.03),rgba(249,115,22,.03))}
+.popular-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--red),var(--orange));color:#fff;padding:4px 18px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.pricing-card-name{font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:8px;color:var(--gray-900)}
+.pricing-card-price{font-family:var(--font-display);font-size:36px;font-weight:900;color:var(--red);margin-bottom:4px}
+.pricing-card-price span{font-size:15px;font-weight:400;color:var(--gray-400)}
+.pricing-card-features{margin:20px 0;display:flex;flex-direction:column;gap:10px}
+.feature-item{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--gray-700)}
+.feature-item i{color:var(--red);font-size:16px;flex-shrink:0}
+.pricing-cta{width:100%;padding:13px;background:var(--red);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;transition:.2s;font-family:var(--font-body)}
+.pricing-cta:hover{background:var(--red-dark)}
+
+/* ── AUTH PAGE ── */
+.auth-page{min-height:calc(100vh - var(--nav-h) - var(--bottom-h));display:flex;align-items:center;justify-content:center;padding:40px 20px;background:linear-gradient(135deg,#fff5f5,#fff)}
+.auth-card{background:#fff;border-radius:var(--radius-lg);padding:40px;box-shadow:0 20px 60px rgba(0,0,0,.1);max-width:420px;width:100%;border-top:4px solid var(--red)}
+.auth-logo{text-align:center;margin-bottom:28px}
+.auth-logo-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--red),var(--orange));border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-display);font-size:24px;font-weight:900;margin:0 auto 12px}
+.auth-title{font-family:var(--font-display);font-size:28px;font-weight:900;color:var(--red);text-align:center;margin-bottom:4px}
+.auth-sub{text-align:center;font-size:13.5px;color:var(--gray-400);margin-bottom:28px}
+.form-group{margin-bottom:18px}
+.form-label{display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px}
+.form-input{width:100%;padding:12px 14px;border:1.5px solid var(--gray-200);border-radius:10px;font-size:14px;font-family:var(--font-body);outline:none;transition:.2s}
+.form-input:focus{border-color:var(--red)}
+.form-submit{width:100%;padding:14px;background:linear-gradient(135deg,var(--red),var(--orange));color:#fff;border:none;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;font-family:var(--font-body);transition:.2s;margin-top:4px}
+.form-submit:hover{opacity:.92}
+.auth-divider{text-align:center;font-size:12.5px;color:var(--gray-400);margin:16px 0;position:relative}
+.auth-divider::before,.auth-divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--gray-200)}
+.auth-divider::before{left:0}.auth-divider::after{right:0}
+.auth-switch{text-align:center;font-size:13.5px;color:var(--gray-600);margin-top:16px}
+.auth-switch a{color:var(--red);font-weight:700;cursor:pointer;text-decoration:none}
+
+/* ── BLOG ── */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.blog-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-card);transition:.3s;cursor:pointer}
+.blog-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.1)}
+.blog-card-img-ph{height:180px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.blog-card-body{padding:18px}
+.blog-card-cat{display:inline-block;padding:3px 10px;background:rgba(220,38,38,.1);color:var(--red);border-radius:4px;font-size:11.5px;font-weight:700;margin-bottom:8px;text-transform:uppercase}
+.blog-card-title{font-weight:700;font-size:15.5px;margin-bottom:8px;line-height:1.45;color:var(--gray-900)}
+.blog-card-excerpt{font-size:13px;color:var(--gray-600);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.blog-card-meta{display:flex;align-items:center;gap:12px;margin-top:12px;font-size:12px;color:var(--gray-400)}
+
+/* ── EVENTS ── */
+.event-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-card);display:flex;gap:0;transition:.3s}
+.event-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.1)}
+.event-date-box{width:80px;flex-shrink:0;background:linear-gradient(135deg,var(--red),var(--orange));display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 8px;color:#fff}
+.event-day{font-family:var(--font-display);font-size:36px;font-weight:900;line-height:1}
+.event-month{font-size:12px;font-weight:700;text-transform:uppercase;opacity:.85}
+.event-body{padding:16px 20px;flex:1}
+.event-title{font-weight:700;font-size:15.5px;margin-bottom:6px;color:var(--gray-900)}
+.event-meta{font-size:12.5px;color:var(--gray-500);display:flex;gap:16px;flex-wrap:wrap}
+.event-meta span{display:flex;align-items:center;gap:5px}
+.event-meta i{color:var(--red)}
+
+/* ── 404 ── */
+.page-404{text-align:center;padding:100px 20px;min-height:calc(100vh - var(--nav-h) - var(--bottom-h))}
+.page-404-code{font-family:var(--font-display);font-size:120px;font-weight:900;color:var(--gray-100);line-height:1;letter-spacing:-4px}
+.page-404-msg{font-size:22px;font-weight:700;color:var(--gray-800);margin-bottom:8px}
+.page-404-sub{color:var(--gray-500);margin-bottom:28px}
+
+/* ── BACK BTN ── */
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border:1.5px solid var(--red);color:var(--red);border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;background:none;font-family:var(--font-body);margin-bottom:20px;text-decoration:none;transition:.2s}
+.back-btn:hover{background:var(--red);color:#fff}
+
+/* ── ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(30px);transition:.6s cubic-bezier(.4,0,.2,1)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:640px){
+  .hero-stats{flex-direction:row;flex-wrap:wrap}
+  .hero-stat{min-width:calc(50% - 1px)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+</style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">MIBO</div>
-        <ul class="nav-links">
-            <li><a href="#home">Trang chủ</a></li>
-            <li><a href="#services">Dịch vụ</a></li>
-            <li><a href="#portfolio">Dự án</a></li>
-            <li><a href="#blog">Tin tức</a></li>
-            <li><a href="#contact">Liên hệ</a></li>
-        </ul>
-        <a href="tel:0968696418" class="btn-cta" style="padding: 10px 20px; font-size: 0.9rem;">Hotline: 096.8696.418</a>
-    </nav>
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav class="navbar">
+  <a href="#" class="nav-logo" onclick="navigate('home')">
+    <div class="nav-logo-icon">M</div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">MIBO</span>
+      <span class="nav-logo-tag">AI &amp; AUTO</span>
+    </div>
+  </a>
+  <div class="nav-search">
+    <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm, dịch vụ..." onkeydown="if(event.key==='Enter')doSearch()"/>
+    <button onclick="doSearch()"><i class="ri-search-line"></i></button>
+  </div>
+  <div class="nav-right">
+    <a href="tel:0375124681" class="nav-phone"><i class="ri-phone-line"></i>0375.124681</a>
+    <button class="nav-hamburger" onclick="toggleMenu()"><i class="ri-menu-3-line"></i></button>
+  </div>
+</nav>
 
-    <section id="home">
-        <div class="hero-content">
-            <h1>NGHIÊN CỨU - KHAI THÁC<br><span style="color: var(--primary);">AI & AUTO</span></h1>
-            <p>Chúng tôi chuyên nghiên cứu - khai thác triệt để các nguồn lực - nền tảng ứng dụng và triển khai hệ thống doanh nghiệp tự động cho năng suất tăng 90% hoặc giảm 90% chi phí.</p>
-            <div class="hero-btns">
-                <a href="#services" class="btn-cta">Khám phá Giải pháp</a>
-            </div>
+<!-- ═══════════════ SIDE MENU ═══════════════ -->
+<div class="side-menu-overlay" id="sideOverlay" onclick="toggleMenu()"></div>
+<div class="side-menu" id="sideMenu">
+  <div class="side-menu-header">
+    <span class="side-menu-logo">MIBO</span>
+    <button class="side-menu-close" onclick="toggleMenu()"><i class="ri-close-line"></i></button>
+  </div>
+  <div class="side-menu-links">
+    <a href="javascript:void(0)" onclick="navigate('rd');toggleMenu()"><i class="ri-flask-line"></i>Năng lực R&amp;D</a>
+    <a href="index.html" onclick="navigate('products-page');toggleMenu()"><i class="ri-apps-2-line"></i> Sản phẩm</a>
+    <a href="javascript:void(0)" onclick="navigate('blog');toggleMenu()"><i class="ri-book-open-line"></i>Thư viện / Blog</a>
+    <a href="javascript:void(0)" onclick="navigate('events');toggleMenu()"><i class="ri-calendar-event-line"></i>Sự kiện</a>
+    <a href="javascript:void(0)" onclick="navigate('contact');toggleMenu()"><i class="ri-customer-service-line"></i>Liên hệ</a>
+    <a href="javascript:void(0)" onclick="navigate('privacy');toggleMenu()"><i class="ri-shield-check-line"></i>Bảo mật</a>
+    <a href="javascript:void(0)" onclick="navigate('terms');toggleMenu()"><i class="ri-file-text-line"></i>Điều khoản</a>
+  </div>
+  <div class="side-menu-footer">
+    <a href="tel:0375124681"><i class="ri-phone-fill"></i>0375.124681</a>
+  </div>
+</div>
+
+<!-- ═══════════════ PAGES CONTAINER ═══════════════ -->
+<div id="page-home" class="page-view active">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-badge"><i class="ri-sparkling-line"></i>Giải pháp công nghệ thế hệ mới</div>
+    <h1 class="hero-h1">CÔNG TY<br><span>PHẦN MỀM &amp; AI</span></h1>
+    <p class="hero-sub">Chuyên thiết kế <strong>WEBSITE</strong> — <strong>PHẦN MỀM DI ĐỘNG</strong> — <strong>PHẦN MỀM DOANH NGHIỆP</strong> — <strong>GIẢI PHÁP TỰ ĐỘNG HÓA</strong></p>
+    <div class="hero-pills">
+      <span class="hero-pill"><i class="ri-global-line"></i> Website</span>
+      <span class="hero-pill"><i class="ri-smartphone-line"></i> App Mobile</span>
+      <span class="hero-pill"><i class="ri-building-line"></i> Phần mềm DN</span>
+      <span class="hero-pill"><i class="ri-robot-line"></i> AI &amp; Tự động hóa</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#services" class="btn-red"><i class="ri-rocket-line"></i>Xem dịch vụ</a>
+      <a href="tel:0375124681" class="btn-outline"><i class="ri-customer-service-line"></i>Tư vấn miễn phí</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-val">500+</div><div class="hero-stat-lbl">Dự án</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">98%</div><div class="hero-stat-lbl">Hài lòng</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">10+</div><div class="hero-stat-lbl">Năm kinh nghiệm</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">24/7</div><div class="hero-stat-lbl">Hỗ trợ</div></div>
+    </div>
+  </div>
+  <div class="scroll-indicator"><i class="ri-arrow-down-line"></i><span>Cuộn xuống</span></div>
+</section>
+
+<!-- POPULAR SERVICES -->
+<section class="section" id="services" style="background:#fff">
+  <div class="section-inner">
+    <h2 class="section-title fade-up">Sản Phẩm &amp; Dịch Vụ Phổ Biến</h2>
+    <p class="section-sub fade-up">Các nền tảng quảng cáo & bán hàng online hàng đầu — giải pháp trọn gói từ thiết kế đến vận hành</p>
+    <div class="divider"></div>
+    <div class="services-grid fade-up">
+      <a href="#" onclick="navigate('google-map-pricing')" class="service-card">
+        <div class="service-card-header" style="background:linear-gradient(135deg,#ff0000,#bd0202)">
+          <div class="service-card-icon"><i class="ri-map-pin-line"></i></div>
+          <div class="service-card-name">Google Map</div>
         </div>
+        <div class="service-card-body">
+          <p class="service-card-desc">Tối ưu Google Business, SEO bản đồ, tăng khách hàng địa phương</p>
+          <button class="btn-sm-red"><i class="ri-price-tag-3-line"></i>Xem Bảng Giá</button>
+        </div>
+      </a>
+      <a href="#" onclick="navigate('tiktok-pricing')" class="service-card">
+        <div class="service-card-header" style="background:linear-gradient(135deg,#ff0000,#bd0202)">
+          <div class="service-card-icon"><i class="ri-tiktok-line"></i></div>
+          <div class="service-card-name">TikTok Shop</div>
+        </div>
+        <div class="service-card-body">
+          <p class="service-card-desc">Setup TikTok Shop, livestream bán hàng, quảng cáo TikTok Ads</p>
+          <button class="btn-sm-red"><i class="ri-price-tag-3-line"></i>Xem Bảng Giá</button>
+        </div>
+      </a>
+      <a href="#" onclick="navigate('facebook-pricing')" class="service-card">
+        <div class="service-card-header" style="background:linear-gradient(135deg,#ff0000,#bd0202)">
+          <div class="service-card-icon"><i class="ri-facebook-circle-line"></i></div>
+          <div class="service-card-name">Facebook Shop</div>
+        </div>
+        <div class="service-card-body">
+          <p class="service-card-desc">Quản lý Fanpage, Facebook Ads, shop online tích hợp</p>
+          <button class="btn-sm-red"><i class="ri-price-tag-3-line"></i>Xem Bảng Giá</button>
+        </div>
+      </a>
+      <a href="#" onclick="navigate('youtube-pricing')" class="service-card">
+        <div class="service-card-header" style="background:linear-gradient(135deg,#ff0000,#bd0202)">
+          <div class="service-card-icon"><i class="ri-youtube-line"></i></div>
+          <div class="service-card-name">YouTube</div>
+        </div>
+        <div class="service-card-body">
+          <p class="service-card-desc">Sản xuất video, SEO YouTube, chạy quảng cáo Google Ads</p>
+          <button class="btn-sm-red"><i class="ri-price-tag-3-line"></i>Xem Bảng Giá</button>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT SECTIONS (11 sections) -->
+<div id="product-sections-container"></div>
+
+<!-- MAP SECTION -->
+<section class="map-section">
+  <div class="section-inner">
+    <h2 class="section-title fade-up">Vị Trí Của Chúng Tôi</h2>
+    <div class="divider"></div>
+    <div class="map-wrap fade-up">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62828.29690660432!2d106.33646672248302!3d10.199441313675683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310aa9006aa2cd2d%3A0x7e08963c701f0139!2zQ8O0bmcgdHkgcGjhuqduIG3hu4FtIE1JQk8!5e0!3m2!1svi!2s!4v1777423545834!5m2!1svi!2s" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="map-info fade-up">
+      <div class="map-info-item"><i class="ri-map-pin-line"></i><span>124 Kp. Long Thuận, P. An Hội, Vĩnh Long</span></div>
+      <div class="map-info-item"><i class="ri-phone-line"></i><a href="tel:0375124681" style="color:inherit;text-decoration:none">0375.124681</a></div>
+      <div class="map-info-item"><i class="ri-mail-line"></i><a href="mailto:kido@mibo.mobi" style="color:inherit;text-decoration:none">kido@mibo.mobi</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">MIBO</div>
+        <div class="footer-brand-desc">Mekong Invention Back Office — Công ty phần mềm & AI, đồng hành cùng doanh nghiệp trong kỷ nguyên số.</div>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/mibofb" target="_blank" class="footer-social"><i class="ri-facebook-fill"></i></a>
+          <a href="https://www.youtube.com/channel/UCX8q34yph6lCXT87D0XO1tQ" target="_blank" class="footer-social"><i class="ri-youtube-fill"></i></a>
+          <a href="https://www.linkedin.com/in/mekong-invention-back-office-579257260/" target="_blank" class="footer-social"><i class="ri-linkedin-fill"></i></a>
+          <a href="https://www.instagram.com/mib.office/" target="_blank" class="footer-social"><i class="ri-instagram-fill"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Dịch vụ</div>
+        <div class="footer-links">
+          <a href="javascript:void(0)" onclick="navigate('website-pricing')"><i class="ri-arrow-right-s-line"></i>Website doanh nghiệp</a>
+          <a href="javascript:void(0)" onclick="navigate('website-ban-hang-pricing')"><i class="ri-arrow-right-s-line"></i>Website bán hàng</a>
+          <a href="javascript:void(0)" onclick="navigate('landing-page-pricing')"><i class="ri-arrow-right-s-line"></i>Landing Page</a>
+          <a href="javascript:void(0)" onclick="navigate('phan-mem-crm-pricing')"><i class="ri-arrow-right-s-line"></i>Phần mềm CRM</a>
+          <a href="javascript:void(0)" onclick="navigate('phan-mem-quan-ly-pricing')"><i class="ri-arrow-right-s-line"></i>PM Quản lý</a>
+          <a href="javascript:void(0)" onclick="navigate('tu-dong-hoa-quy-trinh')"><i class="ri-arrow-right-s-line"></i>Tự động hóa quy trình</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Sản phẩm</div>
+        <div class="footer-links">
+          <a href="javascript:void(0)" onclick="navigate('google-map-pricing')"><i class="ri-arrow-right-s-line"></i>Google Map</a>
+          <a href="javascript:void(0)" onclick="navigate('tiktok-pricing')"><i class="ri-arrow-right-s-line"></i>TikTok Shop</a>
+          <a href="javascript:void(0)" onclick="navigate('facebook-pricing')"><i class="ri-arrow-right-s-line"></i>Facebook Shop</a>
+          <a href="javascript:void(0)" onclick="navigate('youtube-pricing')"><i class="ri-arrow-right-s-line"></i>YouTube</a>
+          <a href="javascript:void(0)" onclick="navigate('giai-phap-cloud')"><i class="ri-arrow-right-s-line"></i>Giải pháp Cloud</a>
+          <a href="javascript:void(0)" onclick="navigate('phan-tich-du-lieu')"><i class="ri-arrow-right-s-line"></i>Phân tích dữ liệu</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Liên hệ</div>
+        <div class="footer-contact-item"><i class="ri-map-pin-line"></i><span>124 Kp. Long Thuận, P. An Hội, Vĩnh Long</span></div>
+        <div class="footer-contact-item"><i class="ri-phone-line"></i><a href="tel:0375124681" style="color:inherit;text-decoration:none">0375.124681</a></div>
+        <div class="footer-contact-item"><i class="ri-mail-line"></i><a href="mailto:kido@mibo.mobi" style="color:inherit;text-decoration:none">kido@mibo.mobi</a></div>
+        <div class="footer-hours">
+          <div><span>Thứ 2 – Thứ 6</span><span>8:00 – 22:00</span></div>
+          <div><span>Thứ 7</span><span>8:00 – 12:00</span></div>
+          <div><span>Chủ nhật</span><span>Nghỉ</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MIBO — Mekong Invention Back Office. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#" onclick="navigate('privacy')">Bảo mật</a>
+        <a href="#" onclick="navigate('terms')">Điều khoản</a>
+        <a href="#" onclick="navigate('contact')">Liên hệ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- end page-home -->
+
+<!-- ═══════════════ SUB-PAGES ═══════════════ -->
+<div id="page-pricing" class="page-view"></div>
+<div id="page-auth" class="page-view"></div>
+<div id="page-blog" class="page-view"></div>
+<div id="page-events" class="page-view"></div>
+<div id="page-contact" class="page-view"></div>
+<div id="page-privacy" class="page-view"></div>
+<div id="page-terms" class="page-view"></div>
+<div id="page-product-detail" class="page-view"></div>
+<div id="page-404" class="page-view"></div>
+<div id="page-rd" class="page-view"></div>
+<div id="page-digital-transform" class="page-view"></div>
+
+<!-- ═══════════════ BOTTOM NAV ═══════════════ -->
+<nav class="bottom-nav">
+  <a class="bottom-nav-item active" id="bnav-home" onclick="navigate('home')"><i class="ri-home-5-line"></i><span>Trang chủ</span></a>
+  <div class="dropdown-wrapper">
+    <div class="bottom-nav-item" id="bnav-products" onclick="toggleDropdown('dd-products')">
+      <i class="ri-apps-2-line"></i><span>Sản phẩm</span>
+    </div>
+    <div class="dropdown-menu" id="dd-products">
+      <a class="dropdown-item" href="#" onclick="navigate('website-pricing');closeDropdowns()"><i class="ri-global-line"></i>Website</a>
+      <a class="dropdown-item" href="#" onclick="navigate('android');closeDropdowns()"><i class="ri-android-line"></i>App Android</a>
+      <a class="dropdown-item" href="#" onclick="navigate('ios');closeDropdowns()"><i class="ri-apple-line"></i>App iOS</a>
+      <a class="dropdown-item" href="#" onclick="navigate('app-pc');closeDropdowns()"><i class="ri-computer-line"></i>App PC</a>
+      <a class="dropdown-item" href="#" onclick="navigate('tu-van-chuyen-doi-so');closeDropdowns()"><i class="ri-exchange-line"></i>Chuyển đổi số</a>
+      <a class="dropdown-item" href="#" onclick="navigate('chatbot');closeDropdowns()"><i class="ri-chat-3-line"></i>Chat Bot</a>
+      <a class="dropdown-item" href="#" onclick="navigate('ai-noi-bo');closeDropdowns()"><i class="ri-robot-line"></i>AI nội bộ</a>
+      <a class="dropdown-item" href="#" onclick="navigate('doanh-nghiep-tu-dong');closeDropdowns()"><i class="ri-organization-chart"></i>DN Tự động</a>
+    </div>
+  </div>
+  <a class="bottom-nav-item call-btn" href="tel:0375124681"><i class="ri-phone-fill"></i><span>Gọi ngay</span></a>
+  <a class="bottom-nav-item" id="bnav-events" onclick="navigate('events')"><i class="ri-calendar-event-line"></i><span>Sự kiện</span></a>
+  <div class="dropdown-wrapper">
+    <div class="bottom-nav-item" id="bnav-profile" onclick="toggleDropdown('dd-profile')">
+      <i class="ri-user-line"></i><span>Hồ sơ</span>
+    </div>
+    <div class="dropdown-menu" id="dd-profile">
+      <a class="btn-login" href="#" onclick="navigate('auth');closeDropdowns()"><i class="ri-login-box-line"></i>Đăng nhập</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+// ══ DATA ══
+const productData = [
+  {
+    id:'website', title:'WEBSITE', sub:'Thiết kế website chuyên nghiệp, chuẩn SEO',
+    items:[
+      {id:'w1',name:'Website Doanh Nghiệp',desc:'Thiết kế website đại diện thương hiệu, chuẩn SEO Google, tích hợp đầy đủ tính năng',views:1240,likes:89,emoji:'🏢',route:'website-pricing'},
+      {id:'w2',name:'Website Bán Hàng',desc:'Shop online tích hợp giỏ hàng, thanh toán, quản lý đơn hàng tự động',views:982,likes:75,emoji:'🛒',route:'website-ban-hang-pricing'},
+      {id:'w3',name:'Landing Page',desc:'Trang đích chuyển đổi cao, thiết kế theo mục tiêu chiến dịch marketing',views:756,likes:61,emoji:'🎯',route:'landing-page-pricing'},
+      {id:'w4',name:'Website Tin Tức',desc:'Nền tảng tin tức, blog, tạp chí online với CMS dễ sử dụng',views:534,likes:42,emoji:'📰',route:'website-tin-tuc-pricing'},
+    ]
+  },
+  {
+    id:'software', title:'PHẦN MỀM', sub:'Phần mềm quản lý doanh nghiệp toàn diện',
+    items:[
+      {id:'s1',name:'Phần mềm Quản lý',desc:'Quản lý tổng thể doanh nghiệp: nhân sự, kho, sản xuất trên một nền tảng',views:890,likes:67,emoji:'⚙️',route:'phan-mem-quan-ly-pricing'},
+      {id:'s2',name:'Phần mềm Kế toán',desc:'Hệ thống kế toán thông minh, báo cáo tài chính tự động, kết nối ngân hàng',views:720,likes:55,emoji:'💰',route:'phan-mem-ke-toan-pricing'},
+      {id:'s3',name:'Phần mềm CRM',desc:'Quản lý khách hàng, pipeline bán hàng, chăm sóc khách hàng đa kênh',views:810,likes:72,emoji:'🤝',route:'phan-mem-crm-pricing'},
+      {id:'s4',name:'Phần mềm Bán Hàng',desc:'POS thông minh, quản lý chuỗi cửa hàng, báo cáo doanh thu real-time',views:650,likes:48,emoji:'🏪',route:'phan-mem-ban-hang-pricing'},
+    ]
+  },
+  {
+    id:'digital', title:'CHUYỂN ĐỔI SỐ', sub:'Đồng hành doanh nghiệp trong kỷ nguyên số hóa',
+    items:[
+      {id:'d1',name:'Tư vấn Chuyển đổi số',desc:'Đánh giá, lập lộ trình và triển khai số hóa toàn diện cho doanh nghiệp',views:560,likes:44,emoji:'🔄',route:'tu-van-chuyen-doi-so'},
+      {id:'d2',name:'Tự động hóa Quy trình',desc:'RPA, workflow automation, giảm tải thủ công, tăng năng suất vận hành',views:490,likes:38,emoji:'🤖',route:'tu-dong-hoa-quy-trinh'},
+      {id:'d3',name:'Giải pháp Cloud',desc:'Hạ tầng đám mây linh hoạt, an toàn, scalable cho mọi quy mô doanh nghiệp',views:430,likes:33,emoji:'☁️',route:'giai-phap-cloud'},
+      {id:'d4',name:'Phân tích Dữ liệu',desc:'Dashboard BI, data analytics, insights kinh doanh từ dữ liệu thực tế',views:380,likes:29,emoji:'📊',route:'phan-tich-du-lieu'},
+    ]
+  },
+  {
+    id:'game', title:'GAME', sub:'Phát triển game đa nền tảng, sáng tạo không giới hạn',
+    items:[
+      {id:'g1',name:'Game Mobile',desc:'Phát triển game mobile Android/iOS với Unity, đồ họa đẹp, gameplay hấp dẫn',views:1560,likes:142,emoji:'📱',route:'game-mobile'},
+      {id:'g2',name:'Game PC',desc:'Game máy tính đồ họa cao, thiết kế cốt truyện phong phú, engine Unreal/Unity',views:1230,likes:108,emoji:'🖥️',route:'game-pc'},
+      {id:'g3',name:'Game Giáo dục',desc:'Gamification giáo dục, học qua chơi, phù hợp mọi lứa tuổi học sinh',views:780,likes:65,emoji:'🎓',route:'game-edu'},
+      {id:'g4',name:'Game Multiplayer',desc:'Hệ thống game online nhiều người, backend real-time, matchmaking thông minh',views:920,likes:87,emoji:'🎮',route:'game-multi'},
+    ]
+  },
+  {
+    id:'laptop', title:'LAPTOP', sub:'Tư vấn và cung cấp laptop chính hãng, giá tốt',
+    items:[
+      {id:'l1',name:'Laptop Gaming',desc:'RTX 4060/4070, màn hình 144Hz+, tản nhiệt mạnh, hiệu năng đỉnh cao',views:2100,likes:198,emoji:'🎮',route:'laptop-gaming'},
+      {id:'l2',name:'Laptop Văn phòng',desc:'Mỏng nhẹ, pin bền, CPU Intel Gen 13/14, phù hợp làm việc di động',views:1450,likes:132,emoji:'💼',route:'laptop-office'},
+      {id:'l3',name:'Laptop Đồ họa',desc:'GPU mạnh, màn hình màu sắc chuẩn, RAM 32GB+, cho thiết kế & dựng phim',views:980,likes:89,emoji:'🎨',route:'laptop-design'},
+      {id:'l4',name:'Laptop Sinh viên',desc:'Giá thành phải chăng, hiệu năng ổn định, bảo hành tốt, trả góp 0%',views:1780,likes:167,emoji:'🎒',route:'laptop-student'},
+    ]
+  },
+  {
+    id:'pc', title:'PC', sub:'Máy tính để bàn cấu hình cao, build theo yêu cầu',
+    items:[
+      {id:'pc1',name:'PC Gaming',desc:'Build PC gaming theo ngân sách, i5/i7/i9, VGA RTX series, RGB đẹp mắt',views:1890,likes:174,emoji:'🖥️',route:'pc-gaming'},
+      {id:'pc2',name:'PC Văn phòng',desc:'Máy tính văn phòng bền bỉ, tiết kiệm điện, ổn định cho công việc hàng ngày',views:1120,likes:95,emoji:'🏢',route:'pc-office'},
+      {id:'pc3',name:'PC Workstation',desc:'Máy trạm chuyên nghiệp, Xeon/Threadripper, ECC RAM, GPU Quadro/RTX Pro',views:760,likes:58,emoji:'⚡',route:'pc-workstation'},
+      {id:'pc4',name:'All-in-One',desc:'Màn hình tích hợp máy tính, thiết kế gọn đẹp, phù hợp văn phòng, quầy lễ tân',views:540,likes:43,emoji:'🖱️',route:'pc-aio'},
+    ]
+  },
+  {
+    id:'phone', title:'ĐIỆN THOẠI', sub:'Điện thoại chính hãng, giá tốt, bảo hành uy tín',
+    items:[
+      {id:'ph1',name:'Điện thoại Flagship',desc:'Samsung S25, iPhone 16, Xiaomi 14 — flagship mới nhất, hiệu năng đỉnh',views:3200,likes:312,emoji:'📱',route:'phone-flagship'},
+      {id:'ph2',name:'Điện thoại Tầm trung',desc:'Hiệu năng tốt giá từ 5-10 triệu, pin khỏe, camera chụp đẹp',views:2560,likes:245,emoji:'📲',route:'phone-mid'},
+      {id:'ph3',name:'Điện thoại Gaming',desc:'ROG Phone, RedMagic, tản nhiệt gaming, màn hình 165Hz, pin 6000mAh',views:1890,likes:178,emoji:'🎮',route:'phone-gaming'},
+      {id:'ph4',name:'Điện thoại Phổ thông',desc:'Dưới 3 triệu, đủ dùng, bền bỉ, phù hợp người lớn tuổi và học sinh',views:2100,likes:201,emoji:'☎️',route:'phone-basic'},
+    ]
+  },
+  {
+    id:'camera', title:'CAMERA', sub:'Hệ thống camera giám sát và chuyên nghiệp',
+    items:[
+      {id:'cam1',name:'Camera An ninh',desc:'Camera IP 4K/8MP, AI nhận diện khuôn mặt, cảnh báo chuyển động, lưu cloud',views:1450,likes:128,emoji:'📹',route:'camera-security'},
+      {id:'cam2',name:'Camera Hành trình',desc:'Ghi hành trình xe hơi 4K, GPS tracking, kết nối điện thoại, hồng ngoại ban đêm',views:980,likes:87,emoji:'🚗',route:'camera-dashcam'},
+      {id:'cam3',name:'Camera Chuyên nghiệp',desc:'Mirrorless Sony/Canon/Nikon cho nhiếp ảnh gia và videographer',views:760,likes:64,emoji:'📷',route:'camera-pro'},
+      {id:'cam4',name:'Camera IP Wifi',desc:'Camera không dây dễ lắp đặt, xem từ xa qua điện thoại, tích hợp AI',views:1230,likes:115,emoji:'📡',route:'camera-ip'},
+    ]
+  },
+  {
+    id:'online-sales', title:'BÁN HÀNG ONLINE', sub:'Giải pháp kinh doanh online đa nền tảng',
+    items:[
+      {id:'os1',name:'Bán hàng Shopee',desc:'Setup gian hàng Shopee chuyên nghiệp, SEO sản phẩm, quảng cáo Shopee Ads',views:2340,likes:224,emoji:'🛍️',route:'shopee-pricing'},
+      {id:'os2',name:'Bán hàng Lazada',desc:'Mở gian hàng Lazada, tối ưu listing, chạy Flash Sale, quản lý đơn hàng',views:1560,likes:148,emoji:'📦',route:'lazada-pricing'},
+      {id:'os3',name:'Livestream Bán hàng',desc:'Setup studio livestream, script bán hàng, vận hành phiên live hiệu quả cao',views:1890,likes:178,emoji:'🎥',route:'livestream-pricing'},
+      {id:'os4',name:'Marketing Online',desc:'Chiến lược content marketing, SEO/SEM, email marketing, remarketing toàn diện',views:1120,likes:107,emoji:'📣',route:'marketing-pricing'},
+    ]
+  },
+  {
+    id:'video', title:'VIDEO', sub:'Sản xuất nội dung video chuyên nghiệp',
+    items:[
+      {id:'v1',name:'Review Phần mềm',desc:'Video review phần mềm chi tiết, so sánh tính năng, hướng dẫn sử dụng',views:890,likes:76,emoji:'🎬',route:'video-software'},
+      {id:'v2',name:'Review Game',desc:'Gameplay walkthrough, review tựa game mới, tips & tricks, content viral',views:1560,likes:145,emoji:'🕹️',route:'video-game'},
+      {id:'v3',name:'Video Học hành',desc:'Khóa học online, tutorial kỹ thuật, video hướng dẫn chuyên sâu',views:670,likes:54,emoji:'📚',route:'video-edu'},
+      {id:'v4',name:'Video Quảng cáo',desc:'TVC doanh nghiệp, video ads social media, motion graphics, 2D/3D animation',views:780,likes:68,emoji:'📺',route:'video-ads'},
+    ]
+  },
+  {
+    id:'science', title:'KHOA HỌC & CÔNG NGHỆ', sub:'Nghiên cứu và ứng dụng công nghệ tiên tiến',
+    items:[
+      {id:'sc1',name:'AI / Machine Learning',desc:'Mô hình AI tùy chỉnh, chatbot thông minh, computer vision, xử lý ngôn ngữ tự nhiên',views:1230,likes:118,emoji:'🤖',route:'ai-ml'},
+      {id:'sc2',name:'IoT / Smart Home',desc:'Hệ thống nhà thông minh, cảm biến IoT, điều khiển từ xa, automation',views:890,likes:82,emoji:'🏠',route:'iot-smart'},
+      {id:'sc3',name:'Blockchain',desc:'Smart contract, NFT platform, DeFi solutions, tokenization tài sản số',views:560,likes:47,emoji:'🔗',route:'blockchain'},
+      {id:'sc4',name:'Robotics',desc:'Robot công nghiệp, robot giáo dục, hệ thống tự động hóa sản xuất',views:430,likes:36,emoji:'🦾',route:'robotics'},
+    ]
+  },
+];
+
+// ── LIKED STATES ──
+const liked = {};
+
+// ── RENDER PRODUCT SECTIONS ──
+function renderProductSections(){
+  const container = document.getElementById('product-sections-container');
+  container.innerHTML = productData.map((sec,si)=>`
+    <section class="product-section" id="sec-${sec.id}">
+      <div class="section-inner">
+        <h2 class="section-title fade-up">${sec.title}</h2>
+        <p class="section-sub fade-up">${sec.sub}</p>
+        <div class="divider"></div>
+        <div class="product-grid">
+          ${sec.items.map(item=>`
+            <div class="product-card" id="card-${item.id}">
+              <div class="product-card-img-placeholder" style="background:linear-gradient(135deg,${cardColor(si,0)},${cardColor(si,1)})">${item.emoji}</div>
+              <div class="product-card-body">
+                <div class="product-card-name">${item.name}</div>
+                <div class="product-card-desc">${item.desc}</div>
+                <div class="product-card-meta">
+                  <span><i class="ri-eye-line"></i> ${item.views.toLocaleString()}</span>
+                  <span><i class="ri-heart-line"></i> <span id="lc-${item.id}">${item.likes}</span></span>
+                </div>
+                <div class="product-card-actions">
+                  <button class="action-btn" id="like-btn-${item.id}" onclick="toggleLike('${item.id}',${item.likes})">
+                    <i class="ri-heart-line" id="like-icon-${item.id}"></i> Thích
+                  </button>
+                  <button class="action-btn" onclick="shareItem('${item.name}')"><i class="ri-share-line"></i> Chia sẻ</button>
+                  <button class="action-btn-go" onclick="navigate('product-detail','${item.id}')"><i class="ri-arrow-right-line"></i></button>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="see-all-wrap">
+          <a href="#" class="btn-see-all" onclick="navigate('products-page')"><i class="ri-apps-2-line"></i>XEM TẤT CẢ ${sec.title}</a>
+        </div>
+      </div>
     </section>
+  `).join('');
+}
+function cardColor(si,idx){
+  const palettes=[['#FF0000','#BD0202']];
+  return palettes[si%palettes.length][idx];
+}
 
-    <section id="services">
-        <div class="section-title">
-            <h2>Giải pháp của chúng tôi</h2>
-            <p>Tối ưu quy trình quản lý kinh doanh & sản xuất</p>
-        </div>
-        <div class="grid">
-            <div class="card">
-                <i class="fas fa-code"></i>
-                <h3>Khai thác hiệu quả WEBSITE</h3>
-                <p>Xây dựng & Cải thiện hiệu xuất Website cho hiệu quả minh bạch với con số thực tế.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-microchip"></i>
-                <h3>PHẦN MỀM DOANH NGHIỆP</h3>
-                <p>Kết hợp AI cho quản lý, giao việc, chấm công, tính lương, soạn hợp đồng, xuất hóa đơn và chăm sóc khách hàng tự động.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-robot"></i>
-                <h3>AI & AUTO</h3>
-                <p>Tự động hóa mọi công tác lặp lại hoặc công tác có điều kiện giúp doanh nghiệp tự động hóa trên 90%.</p>
-            </div>
-        </div>
-    </section>
+// ── LIKE TOGGLE ──
+function toggleLike(id,base){
+  const btn=document.getElementById('like-btn-'+id);
+  const icon=document.getElementById('like-icon-'+id);
+  const cnt=document.getElementById('lc-'+id);
+  if(liked[id]){liked[id]=false;btn.classList.remove('liked');icon.className='ri-heart-line';cnt.textContent=base;}
+  else{liked[id]=true;btn.classList.add('liked');icon.className='ri-heart-fill';cnt.textContent=base+1;}
+}
+function shareItem(name){
+  if(navigator.share)navigator.share({title:'MIBO — '+name,url:window.location.href});
+  else{navigator.clipboard?.writeText(window.location.href);alert('Đã copy link: '+name);}
+}
 
-    <section id="portfolio" style="background: #f1f5f9;">
-        <div class="section-title">
-            <h2>DỰ ÁN TIÊU BIỂU</h2>
-            <p>Những minh chứng thực tế cho năng lực thực thi</p>
-        </div>
-        <div class="grid">
-            <div class="card" style="padding: 15px; text-align: left;">
-                <div class="item-image"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=400&q=80" alt="Legal Tech"></div>
-                <h4 style="padding: 10px;">Dự án AIBUS</h4>
-                <p style="padding: 0 10px 10px; font-size: 0.9rem; color: var(--gray);">Hệ thống tự động hóa đăng ký doanh nghiệp.</p>
-            </div>
-            <div class="card" style="padding: 15px; text-align: left;">
-                <div class="item-image"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" alt="Ecotourism"></div>
-                <h4 style="padding: 10px;">Dự án AIXI</h4>
-                <p style="padding: 0 10px 10px; font-size: 0.9rem; color: var(--gray);">Hệ thống quản lý mạng lưới chia sẻ năng lượng đóng gói cho phương tiện di động và nhà ở.</p>
-            </div>
-            <div class="card" style="padding: 15px; text-align: left;">
-                <div class="item-image"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" alt="Ecotourism"></div>
-                <h4 style="padding: 10px;">Ứng dụng ĐO ĐẠT thời gian thực</h4>
-                <p style="padding: 0 10px 10px; font-size: 0.9rem; color: var(--gray);">Đo chỉ số cần thiết cho ao nuôi tôm công nghiệp, đo chỉ số vườn rau thủy canh và kiểm soát môi trường đất trồng nông nghiệp hữu cơ qua Wifi nội bộ.</p>
-            </div>
-            <div class="card" style="padding: 15px; text-align: left;">
-                <div class="item-image"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" alt="Ecotourism"></div>
-                <h4 style="padding: 10px;">Wifi Marketing</h4>
-                <p style="padding: 0 10px 10px; font-size: 0.9rem; color: var(--gray);">Hiện quảng cáo khi người dùng kết nối Wifi để gọi món, thanh toán, đặt hàng...</p>
-            </div>
-        </div>
-    </section>
+// ── NAVIGATION ──
+let currentPage='home';
+function navigate(page,param){
+  closeDropdowns();
+  document.querySelectorAll('.page-view').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.bottom-nav-item').forEach(b=>b.classList.remove('active'));
+  
+  if(page==='home'){
+    document.getElementById('page-home').classList.add('active');
+    document.getElementById('bnav-home').classList.add('active');
+    window.scrollTo(0,0);
+    return;
+  }
+  if(page==='events'){
+    renderEvents();
+    document.getElementById('page-events').classList.add('active');
+    document.getElementById('bnav-events').classList.add('active');
+    window.scrollTo(0,0);return;
+  }
+  if(page==='auth'){renderAuth();document.getElementById('page-auth').classList.add('active');window.scrollTo(0,0);return;}
+  if(page==='blog'){renderBlog();document.getElementById('page-blog').classList.add('active');window.scrollTo(0,0);return;}
+  if(page==='privacy'){renderPrivacy();document.getElementById('page-privacy').classList.add('active');window.scrollTo(0,0);return;}
+  if(page==='terms'){renderTerms();document.getElementById('page-terms').classList.add('active');window.scrollTo(0,0);return;}
+  if(page==='contact'){renderContact();document.getElementById('page-contact').classList.add('active');window.scrollTo(0,0);return;}
+  if(page==='rd'){renderRD();document.getElementById('page-rd').classList.add('active');window.scrollTo(0,0);return;}
+  if(page==='product-detail'){renderProductDetail(param);document.getElementById('page-product-detail').classList.add('active');window.scrollTo(0,0);return;}
+  
+  // Pricing & sub pages
+  const pricingRoutes=['google-map-pricing','tiktok-pricing','facebook-pricing','youtube-pricing','website-pricing','website-ban-hang-pricing','landing-page-pricing','website-tin-tuc-pricing','phan-mem-quan-ly-pricing','phan-mem-ke-toan-pricing','phan-mem-crm-pricing','phan-mem-ban-hang-pricing','tu-van-chuyen-doi-so','tu-dong-hoa-quy-trinh','giai-phap-cloud','phan-tich-du-lieu'];
+  if(pricingRoutes.includes(page)||page.endsWith('-pricing')||['android','ios','app-pc','chatbot','ai-noi-bo','doanh-nghiep-tu-dong'].includes(page)){
+    renderPricing(page);document.getElementById('page-pricing').classList.add('active');window.scrollTo(0,0);return;
+  }
+  // 404 fallback
+  render404();document.getElementById('page-404').classList.add('active');window.scrollTo(0,0);
+}
 
-    <section id="blog">
-        <div class="section-title">
-            <h2>Tin tức R&D</h2>
-            <p>Cập nhật xu hướng công nghệ và nghiên cứu mới nhất</p>
-        </div>
-        <div class="grid">
-            <article style="border-bottom: 2px solid var(--primary); padding-bottom: 20px;">
-                <span style="color: var(--primary); font-weight: bold; font-size: 0.8rem;">23/04/2026</span>
-                <h4 style="margin: 10px 0;">Ứng dụng máy học trong vi mạch điều khiển</h4>
-                <p style="font-size: 0.9rem; color: var(--gray);">Cách chúng tôi tối ưu hóa hiệu suất chip xử lý cho các hệ thống P2P...</p>
-            </article>
-            <article style="border-bottom: 2px solid var(--primary); padding-bottom: 20px;">
-                <span style="color: var(--primary); font-weight: bold; font-size: 0.8rem;">15/04/2026</span>
-                <h4 style="margin: 10px 0;">Xu hướng Solo-Operator trong năm 2026</h4>
-                <p style="font-size: 0.9rem; color: var(--gray);">Tại sao các doanh nghiệp đang dịch chuyển sang mô hình ít nhân sự, nhiều máy móc...</p>
-            </article>
-        </div>
-    </section>
+// ── PRICING PAGE RENDERER ──
+const pricingMeta = {
+  'google-map-pricing':{title:'Google Map Marketing',icon:'ri-map-pin-2-fill',color:'#ea4335',plans:[{name:'Cơ bản',price:'1.500.000',unit:'/tháng',features:['Setup Google Business Profile','Tối ưu thông tin doanh nghiệp','10 ảnh chất lượng cao','Phản hồi đánh giá x5/tháng','Báo cáo tháng']},{name:'Chuyên nghiệp',price:'3.500.000',unit:'/tháng',popular:true,features:['Tất cả gói Cơ bản','SEO Google Maps nâng cao','Google Posts 12 bài/tháng','Quản lý review toàn diện','Q&A tối ưu','Theo dõi đối thủ','Báo cáo tuần']},{name:'Doanh nghiệp',price:'8.000.000',unit:'/tháng',features:['Tất cả gói CN','Multi-location management','Google Ads tích hợp','Chiến lược local SEO','Account Manager riêng','SLA 24h','API tích hợp']}]},
+  'tiktok-pricing':{title:'TikTok Shop & Ads',icon:'ri-tiktok-fill',color:'#fe2c55',plans:[{name:'Starter',price:'2.000.000',unit:'/tháng',features:['Setup TikTok Shop','5 video sản phẩm/tháng','Hỗ trợ đăng sản phẩm','Báo cáo cơ bản','Hỗ trợ qua chat']},{name:'Growth',price:'5.000.000',unit:'/tháng',popular:true,features:['Tất cả Starter','TikTok Ads 3 triệu ngân sách','10 video creative/tháng','Livestream setup','Tư vấn hashtag & trends','Phân tích đối thủ','Báo cáo hiệu suất hàng tuần']},{name:'Scale',price:'12.000.000',unit:'/tháng',features:['Tất cả Growth','Ngân sách Ads không giới hạn','20 video/tháng','Influencer kết nối','KOL seeding','Đội ngũ riêng','Dashboard real-time']}]},
+  'facebook-pricing':{title:'Facebook & Instagram Shop',icon:'ri-facebook-circle-fill',color:'#4f46e5',plans:[{name:'Cơ bản',price:'2.500.000',unit:'/tháng',features:['Setup Fanpage & Shop','Đăng bài 15 posts/tháng','Chạy ads 2 triệu','Quản lý comment & inbox','Báo cáo tháng']},{name:'Nâng cao',price:'6.000.000',unit:'/tháng',popular:true,features:['Tất cả Cơ bản','30 posts/tháng đa dạng format','Ngân sách Ads 5 triệu','Remarketing Pixel','Chatbot tự động','A/B testing quảng cáo','Báo cáo tuần']},{name:'Enterprise',price:'15.000.000',unit:'/tháng',features:['Tất cả Nâng cao','Ngân sách không giới hạn','Instagram Shopping tích hợp','Video Reels production','Strategic planning','Dedicated team','ROI guarantee']}]},
+  'youtube-pricing':{title:'YouTube Marketing',icon:'ri-youtube-fill',color:'#dc2626',plans:[{name:'Cơ bản',price:'3.000.000',unit:'/tháng',features:['Setup kênh YouTube','4 video/tháng','SEO tiêu đề & mô tả','Thumbnail thiết kế','Phân tích analytics']},{name:'Creator',price:'7.000.000',unit:'/tháng',popular:true,features:['Tất cả Cơ bản','8 video/tháng','YouTube Ads ngân sách 5 triệu','Script writing','Editing chuyên nghiệp','Community posts','Monetization tư vấn']},{name:'Studio',price:'18.000.000',unit:'/tháng',features:['Tất cả Creator','12 video/tháng','Studio quay phim','Motion graphics','Shorts content x20/tháng','Brand deal kết nối','Growth manager riêng']}]},
+};
+const defaultPricing = (title,icon)=>({title,icon:'ri-price-tag-3-line',color:'#dc2626',plans:[{name:'Cơ bản',price:'Liên hệ',unit:'',features:['Tư vấn miễn phí','Báo giá theo yêu cầu','Hỗ trợ 24/7','Bảo hành dài hạn']},{name:'Tiêu chuẩn',price:'Liên hệ',unit:'',popular:true,features:['Tất cả gói Cơ bản','Tùy chỉnh theo nhu cầu','Ưu tiên hỗ trợ','Đào tạo sử dụng','Bảo trì 1 năm']},{name:'Premium',price:'Liên hệ',unit:'',features:['Tất cả Tiêu chuẩn','Giải pháp Enterprise','SLA cam kết','Account Manager','Tích hợp không giới hạn']}]});
 
-    <footer>
-        <div class="footer-info">
-            <h2>Kết nối với MIBO</h2>
-            <p style="margin: 15px 0;">Trụ sở R&D: 124 KP.Long Thuận, P. An Hội, T. Vĩnh Long</p>
-            <p>Email: contact@mibo.mobi | Hotline: 096.8696.418</p>
+function renderPricing(route){
+  const meta = pricingMeta[route] || defaultPricing(route.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()));
+  document.getElementById('page-pricing').innerHTML = `
+    <div style="background:#fff;min-height:calc(100vh - var(--nav-h) - var(--bottom-h))">
+      <button class="back-btn" style="margin:20px 20px 0" onclick="history.back()||navigate('home')"><i class="ri-arrow-left-line"></i>Quay lại</button>
+      <div class="pricing-hero" style="background:linear-gradient(135deg,${meta.color},${meta.color}cc)">
+        <i class="${meta.icon}" style="font-size:52px;margin-bottom:16px;display:block;opacity:.9"></i>
+        <h1>${meta.title}</h1>
+        <p>Chọn gói phù hợp với nhu cầu và ngân sách của bạn — cam kết hiệu quả, hỗ trợ tận tâm</p>
+      </div>
+      <div class="pricing-section">
+        <div class="pricing-inner">
+          <div class="pricing-grid">
+            ${meta.plans.map(p=>`
+              <div class="pricing-card ${p.popular?'popular':''}">
+                ${p.popular?'<div class="popular-badge">⭐ Phổ biến nhất</div>':''}
+                <div class="pricing-card-name">${p.name}</div>
+                <div class="pricing-card-price">${p.price}<span>${p.unit}</span></div>
+                <div class="pricing-card-features">
+                  ${p.features.map(f=>`<div class="feature-item"><i class="ri-checkbox-circle-fill"></i>${f}</div>`).join('')}
+                </div>
+                <button class="pricing-cta" onclick="window.location='tel:0375124681'">Đăng ký ngay</button>
+              </div>
+            `).join('')}
+          </div>
+          <div style="text-align:center;margin-top:40px;padding:28px;background:#fff5f5;border-radius:16px;border:1.5px dashed var(--red)">
+            <p style="font-size:15px;color:var(--gray-700);margin-bottom:12px">Cần tư vấn chi tiết? Liên hệ ngay với chúng tôi!</p>
+            <a href="tel:0375124681" class="btn-red"><i class="ri-phone-line"></i>0375.124681 — Gọi miễn phí</a>
+          </div>
         </div>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+    </div>`;
+}
+
+// ── AUTH PAGE ──
+function renderAuth(){
+  document.getElementById('page-auth').innerHTML=`
+    <div class="auth-page">
+      <div class="auth-card">
+        <div class="auth-logo">
+          <div class="auth-logo-icon">M</div>
+          <div class="auth-title">MIBO Portal</div>
+          <div class="auth-sub">Đăng nhập để quản lý dịch vụ của bạn</div>
         </div>
-        <p style="margin-top: 40px; font-size: 0.8rem; color: var(--gray);">© 2026 Mekong Invention Back Office. All rights reserved.</p>
-    </footer>
+        <div class="form-group"><label class="form-label">Email / Số điện thoại</label><input class="form-input" type="text" placeholder="email@example.com"></div>
+        <div class="form-group"><label class="form-label">Mật khẩu</label><input class="form-input" type="password" placeholder="••••••••"></div>
+        <button class="form-submit" onclick="alert('Đăng nhập thành công!')">Đăng nhập</button>
+        <div class="auth-divider">hoặc</div>
+        <button class="form-submit" style="background:linear-gradient(135deg,#4285f4,#34a853)" onclick="alert('Đăng nhập Google')"><i class="ri-google-fill"></i> Đăng nhập với Google</button>
+        <div class="auth-switch">Chưa có tài khoản? <a onclick="alert('Liên hệ MIBO để đăng ký!')">Đăng ký ngay</a></div>
+        <div style="text-align:center;margin-top:12px"><button class="back-btn" onclick="navigate('home')"><i class="ri-arrow-left-line"></i>Trang chủ</button></div>
+      </div>
+    </div>`;
+}
 
-    <script>
-        // Hiệu ứng cuộn mượt (Smooth Scrolling)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+// ── BLOG ──
+const blogPosts=[
+  {cat:'AI & Công nghệ',title:'10 xu hướng AI sẽ thống trị năm 2026',excerpt:'Trí tuệ nhân tạo đang thay đổi mọi ngành công nghiệp. Hãy cùng MIBO điểm qua những xu hướng AI nổi bật nhất năm 2026 mà doanh nghiệp cần nắm bắt.',date:'28/04/2026',emoji:'🤖'},
+  {cat:'Website',title:'5 lý do doanh nghiệp cần website chuẩn SEO năm 2026',excerpt:'Với hơn 5 tỷ người dùng internet, không có website chuẩn SEO đồng nghĩa với việc bạn đang bỏ lỡ hàng nghìn khách hàng tiềm năng mỗi ngày.',date:'25/04/2026',emoji:'🌐'},
+  {cat:'Bán hàng Online',title:'Chiến lược TikTok Shop hiệu quả cho doanh nghiệp nhỏ',excerpt:'TikTok Shop đang tăng trưởng vũ bão tại Việt Nam. Đây là cách các doanh nghiệp vừa và nhỏ có thể tận dụng nền tảng này để tăng doanh thu.',date:'22/04/2026',emoji:'🛍️'},
+  {cat:'Phần mềm',title:'CRM vs Spreadsheet: Doanh nghiệp nên chọn gì?',excerpt:'Nhiều doanh nghiệp vẫn quản lý khách hàng bằng Excel. Bài viết này phân tích khi nào nên nâng cấp lên CRM chuyên nghiệp.',date:'18/04/2026',emoji:'📊'},
+  {cat:'Chuyển đổi số',title:'Lộ trình chuyển đổi số cho doanh nghiệp SME Việt Nam',excerpt:'Chuyển đổi số không cần phải tốn kém hay phức tạp. MIBO chia sẻ lộ trình 6 bước thực tiễn dành cho doanh nghiệp vừa và nhỏ.',date:'15/04/2026',emoji:'🔄'},
+  {cat:'Hướng dẫn',title:'Cách tối ưu Google Business Profile tăng khách hàng địa phương',excerpt:'Google Maps là kênh tìm kiếm phổ biến nhất cho khách hàng địa phương. Học cách tối ưu để doanh nghiệp bạn xuất hiện đầu tiên.',date:'10/04/2026',emoji:'📍'},
+];
+function renderBlog(){
+  document.getElementById('page-blog').innerHTML=`
+    <div style="background:var(--gray-50);min-height:calc(100vh - var(--nav-h) - var(--bottom-h))">
+      <div style="background:linear-gradient(135deg,var(--red),var(--orange));padding:60px 20px;text-align:center;color:#fff">
+        <button class="back-btn" style="color:#fff;border-color:rgba(255,255,255,.6);margin-bottom:20px" onclick="navigate('home')"><i class="ri-arrow-left-line"></i>Trang chủ</button>
+        <h1 style="font-family:var(--font-display);font-size:clamp(28px,5vw,52px);font-weight:900;text-transform:uppercase">Thư Viện & Blog</h1>
+        <p style="opacity:.9;margin-top:8px">Kiến thức công nghệ, kinh nghiệm thực tiễn từ đội ngũ MIBO</p>
+      </div>
+      <div style="max-width:1100px;margin:0 auto;padding:40px 20px">
+        <div class="blog-grid">
+          ${blogPosts.map(p=>`
+            <div class="blog-card" onclick="alert('Bài viết đang được cập nhật!')">
+              <div class="blog-card-img-ph" style="background:linear-gradient(135deg,#fee2e2,#fef3c7)">${p.emoji}</div>
+              <div class="blog-card-body">
+                <span class="blog-card-cat">${p.cat}</span>
+                <div class="blog-card-title">${p.title}</div>
+                <div class="blog-card-excerpt">${p.excerpt}</div>
+                <div class="blog-card-meta"><i class="ri-calendar-line"></i>${p.date} &nbsp;·&nbsp; <i class="ri-time-line"></i>5 phút đọc</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>`;
+}
 
-        // Thay đổi nền Navbar khi cuộn
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.padding = '10px 10%';
-            } else {
-                nav.style.padding = '20px 10%';
-            }
-        });
-    </script>
+// ── EVENTS ──
+const events=[
+  {day:'15',month:'Tháng 5',title:'Hội thảo: Chuyển đổi số cho SME Vùng ĐBSCL',loc:'Khách sạn Mekong, Vĩnh Long',time:'8:00 – 17:00',type:'Hội thảo'},
+  {day:'22',month:'Tháng 5',title:'Workshop: Xây dựng Website & SEO từ A-Z',loc:'Văn phòng MIBO, Vĩnh Long',time:'9:00 – 12:00',type:'Workshop'},
+  {day:'01',month:'Tháng 6',title:'Demo Day: Sản phẩm AI mới của MIBO',loc:'Online (Zoom)',time:'19:00 – 21:00',type:'Online'},
+  {day:'10',month:'Tháng 6',title:'Lớp học TikTok Shop & Livestream Bán hàng',loc:'Văn phòng MIBO, Vĩnh Long',time:'8:00 – 11:30',type:'Đào tạo'},
+];
+function renderEvents(){
+  document.getElementById('page-events').innerHTML=`
+    <div style="background:var(--gray-50);min-height:calc(100vh - var(--nav-h) - var(--bottom-h))">
+      <div style="background:linear-gradient(135deg,var(--red),var(--orange));padding:60px 20px;text-align:center;color:#fff">
+        <button class="back-btn" style="color:#fff;border-color:rgba(255,255,255,.6);margin-bottom:20px" onclick="navigate('home')"><i class="ri-arrow-left-line"></i>Trang chủ</button>
+        <h1 style="font-family:var(--font-display);font-size:clamp(28px,5vw,52px);font-weight:900;text-transform:uppercase">Sự Kiện</h1>
+        <p style="opacity:.9;margin-top:8px">Hội thảo, workshop, đào tạo từ MIBO</p>
+      </div>
+      <div style="max-width:800px;margin:0 auto;padding:40px 20px;display:flex;flex-direction:column;gap:16px">
+        ${events.map(e=>`
+          <div class="event-card" onclick="alert('Đăng ký: ${e.title}')">
+            <div class="event-date-box"><div class="event-day">${e.day}</div><div class="event-month">${e.month}</div></div>
+            <div class="event-body">
+              <div class="event-title">${e.title}</div>
+              <div class="event-meta">
+                <span><i class="ri-map-pin-line"></i>${e.loc}</span>
+                <span><i class="ri-time-line"></i>${e.time}</span>
+                <span style="background:rgba(220,38,38,.1);color:var(--red);padding:2px 8px;border-radius:4px;font-weight:700">${e.type}</span>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+}
+
+// ── CONTACT ──
+function renderContact(){
+  document.getElementById('page-contact').innerHTML=`
+    <div style="background:var(--gray-50);min-height:calc(100vh - var(--nav-h) - var(--bottom-h));padding:40px 20px">
+      <div style="max-width:700px;margin:0 auto">
+        <button class="back-btn" onclick="navigate('home')"><i class="ri-arrow-left-line"></i>Trang chủ</button>
+        <h1 style="font-family:var(--font-display);font-size:42px;font-weight:900;color:var(--red);text-transform:uppercase;margin-bottom:8px">Liên Hệ</h1>
+        <p style="color:var(--gray-600);margin-bottom:32px">Đội ngũ MIBO sẵn sàng tư vấn miễn phí cho bạn</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px">
+          <a href="tel:0375124681" style="display:flex;align-items:center;gap:12px;padding:18px;background:#fff;border-radius:12px;box-shadow:var(--shadow-card);text-decoration:none;color:var(--gray-800)"><i class="ri-phone-fill" style="font-size:24px;color:var(--red)"></i><div><div style="font-weight:700">Hotline</div><div style="color:var(--red);font-weight:700">0375.124681</div></div></a>
+          <a href="mailto:kido@mibo.mobi" style="display:flex;align-items:center;gap:12px;padding:18px;background:#fff;border-radius:12px;box-shadow:var(--shadow-card);text-decoration:none;color:var(--gray-800)"><i class="ri-mail-fill" style="font-size:24px;color:var(--red)"></i><div><div style="font-weight:700">Email</div><div style="color:var(--red)">kido@mibo.mobi</div></div></a>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:28px;box-shadow:var(--shadow-card)">
+          <h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;margin-bottom:20px;color:var(--gray-900)">Gửi yêu cầu tư vấn</h3>
+          <div class="form-group"><label class="form-label">Họ và tên</label><input class="form-input" placeholder="Nguyễn Văn A"></div>
+          <div class="form-group"><label class="form-label">Số điện thoại</label><input class="form-input" type="tel" placeholder="0375.xxxxxx"></div>
+          <div class="form-group"><label class="form-label">Dịch vụ quan tâm</label><select class="form-input"><option>Website doanh nghiệp</option><option>App Mobile</option><option>Phần mềm CRM</option><option>Tự động hóa</option><option>AI giải pháp</option><option>Khác</option></select></div>
+          <div class="form-group"><label class="form-label">Nội dung</label><textarea class="form-input" rows="4" placeholder="Mô tả nhu cầu của bạn..."></textarea></div>
+          <button class="form-submit" onclick="alert('Đã nhận yêu cầu! MIBO sẽ liên hệ trong 24h.')">Gửi yêu cầu</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── R&D PAGE ──
+function renderRD(){
+  document.getElementById('page-rd').innerHTML=`
+    <div style="background:var(--gray-50);min-height:calc(100vh - var(--nav-h) - var(--bottom-h))">
+      <div style="background: linear-gradient(135deg,var(--red),var(--orange));padding:60px 20px;text-align:center;color:#fff">
+        <button class="back-btn" style="color:#fff;border-color:rgba(255,255,255,.5);margin-bottom:20px" onclick="navigate('home')"><i class="ri-arrow-left-line"></i>Trang chủ</button>
+        <h1 style="font-family:var(--font-display);font-size:clamp(32px,6vw,64px);font-weight:900;text-transform:uppercase;margin-bottom:12px">Năng Lực R&amp;D</h1>
+        <p style="opacity:.8;max-width:600px;margin:0 auto">Nghiên cứu và phát triển công nghệ tiên tiến — từ AI đến IoT, từ Mobile đến Enterprise</p>
+      </div>
+      <div style="max-width:1100px;margin:0 auto;padding:48px 20px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+          ${[{icon:'🤖',t:'AI & Machine Learning',d:'Nghiên cứu mô hình AI tùy chỉnh, NLP tiếng Việt, Computer Vision ứng dụng thực tiễn'},
+             {icon:'📱',t:'Mobile Development',d:'React Native, Flutter — phát triển app đa nền tảng hiệu năng cao, UX tinh tế'},
+             {icon:'☁️',t:'Cloud Architecture',d:'Thiết kế hạ tầng microservices, Kubernetes, CI/CD pipeline tự động hóa hoàn toàn'},
+             {icon:'🔒',t:'Cybersecurity',d:'Kiểm thử bảo mật, mã hóa dữ liệu, tuân thủ GDPR và tiêu chuẩn ISO 27001'},
+             {icon:'🔗',t:'Blockchain & Web3',d:'Smart contract Solidity, DeFi protocols, NFT marketplace, tokenization assets'},
+             {icon:'🏠',t:'IoT & Embedded',d:'Thiết kế phần cứng IoT, firmware, giao thức MQTT/CoAP, smart home ecosystem'}].map(c=>`
+            <div style="background:#fff;border-radius:16px;padding:28px;box-shadow:var(--shadow-card);transition:.3s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+              <div style="font-size:40px;margin-bottom:14px">${c.icon}</div>
+              <div style="font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--gray-900);margin-bottom:8px">${c.t}</div>
+              <div style="font-size:13.5px;color:var(--gray-600);line-height:1.6">${c.d}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── PRODUCT DETAIL ──
+function renderProductDetail(id){
+  const item = productData.flatMap(s=>s.items).find(i=>i.id===id)||{name:'Sản phẩm',desc:'Thông tin chi tiết đang được cập nhật.',emoji:'📦',route:'home'};
+  document.getElementById('page-product-detail').innerHTML=`
+    <div style="background:var(--gray-50);min-height:calc(100vh - var(--nav-h) - var(--bottom-h));padding:40px 20px">
+      <div style="max-width:800px;margin:0 auto">
+        <button class="back-btn" onclick="navigate('home')"><i class="ri-arrow-left-line"></i>Quay lại</button>
+        <div style="background:#fff;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-card)">
+          <div style="background:linear-gradient(135deg,var(--red),var(--orange));padding:60px 40px;text-align:center;color:#fff">
+            <div style="font-size:80px;margin-bottom:16px">${item.emoji}</div>
+            <h1 style="font-family:var(--font-display);font-size:36px;font-weight:900;text-transform:uppercase">${item.name}</h1>
+          </div>
+          <div style="padding:32px">
+            <p style="font-size:16px;color:var(--gray-700);line-height:1.8;margin-bottom:28px">${item.desc} Giải pháp được thiết kế tối ưu cho nhu cầu doanh nghiệp Việt Nam, tích hợp công nghệ AI tiên tiến nhất.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:28px">
+              ${['✅ Bảo hành 12 tháng','⚡ Triển khai nhanh','🎯 Tùy chỉnh theo yêu cầu','📞 Hỗ trợ 24/7'].map(f=>`<div style="padding:12px;background:var(--gray-50);border-radius:10px;font-size:13px;font-weight:600;text-align:center">${f}</div>`).join('')}
+            </div>
+            <a href="tel:0375124681" class="btn-red" style="width:100%;justify-content:center;font-size:16px"><i class="ri-phone-line"></i>Tư vấn ngay — 0375.124681</a>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── PRIVACY ──
+function renderPrivacy(){
+  document.getElementById('page-privacy').innerHTML=`
+    <div style="background:#fff;min-height:calc(100vh - var(--nav-h) - var(--bottom-h));padding:40px 20px">
+      <div style="max-width:800px;margin:0 auto">
+        <button class="back-btn" onclick="navigate('home')"><i class="ri-arrow-left-line"></i>Trang chủ</button>
+        <h1 style="font-family:var(--font-display);font-size:42px;font-weight:900;color:var(--red);text-transform:uppercase;margin-bottom:24px">Chính Sách Bảo Mật</h1>
+        ${['Thu thập thông tin','Sử dụng thông tin','Bảo vệ dữ liệu','Cookie Policy','Quyền của người dùng'].map((t,i)=>`
+          <div style="margin-bottom:24px;padding:20px;background:var(--gray-50);border-radius:12px;border-left:4px solid var(--red)">
+            <h3 style="font-weight:700;font-size:17px;margin-bottom:8px;color:var(--gray-900)">${i+1}. ${t}</h3>
+            <p style="font-size:14px;color:var(--gray-600);line-height:1.7">MIBO cam kết bảo vệ thông tin cá nhân của bạn. Chúng tôi chỉ thu thập thông tin cần thiết để cung cấp dịch vụ và không chia sẻ với bên thứ ba khi chưa có sự đồng ý của bạn.</p>
+          </div>`).join('')}
+        <p style="font-size:13px;color:var(--gray-400);margin-top:24px">Cập nhật lần cuối: 29/04/2026 | Liên hệ: kido@mibo.mobi</p>
+      </div>
+    </div>`;
+}
+
+// ── TERMS ──
+function renderTerms(){
+  document.getElementById('page-terms').innerHTML=`
+    <div style="background:#fff;min-height:calc(100vh - var(--nav-h) - var(--bottom-h));padding:40px 20px">
+      <div style="max-width:800px;margin:0 auto">
+        <button class="back-btn" onclick="navigate('home')"><i class="ri-arrow-left-line"></i>Trang chủ</button>
+        <h1 style="font-family:var(--font-display);font-size:42px;font-weight:900;color:var(--red);text-transform:uppercase;margin-bottom:24px">Điều Khoản Sử Dụng</h1>
+        ${['Điều khoản chung','Quyền và nghĩa vụ','Thanh toán & hoàn tiền','Giới hạn trách nhiệm','Thay đổi điều khoản'].map((t,i)=>`
+          <div style="margin-bottom:24px;padding:20px;background:var(--gray-50);border-radius:12px;border-left:4px solid var(--orange)">
+            <h3 style="font-weight:700;font-size:17px;margin-bottom:8px;color:var(--gray-900)">Điều ${i+1}. ${t}</h3>
+            <p style="font-size:14px;color:var(--gray-600);line-height:1.7">Bằng việc sử dụng dịch vụ MIBO, bạn đồng ý với các điều khoản được nêu tại đây. MIBO có quyền cập nhật điều khoản và sẽ thông báo trước 30 ngày với những thay đổi quan trọng.</p>
+          </div>`).join('')}
+        <p style="font-size:13px;color:var(--gray-400);margin-top:24px">Hiệu lực từ: 01/01/2026 | Liên hệ: kido@mibo.mobi</p>
+      </div>
+    </div>`;
+}
+
+// ── 404 ──
+function render404(){
+  document.getElementById('page-404').innerHTML=`
+    <div class="page-404">
+      <div class="page-404-code">404</div>
+      <div class="page-404-msg">Trang không tồn tại</div>
+      <div class="page-404-sub">Trang bạn tìm kiếm chưa được xây dựng hoặc đã bị di chuyển.</div>
+      <button class="btn-red" onclick="navigate('home')"><i class="ri-home-line"></i>Về trang chủ</button>
+    </div>`;
+}
+
+// ── MENU TOGGLE ──
+function toggleMenu(){
+  document.getElementById('sideMenu').classList.toggle('open');
+  document.getElementById('sideOverlay').classList.toggle('open');
+}
+
+// ── DROPDOWN ──
+function toggleDropdown(id){
+  closeDropdowns(id);
+  document.getElementById(id)?.classList.toggle('open');
+}
+function closeDropdowns(except){
+  document.querySelectorAll('.dropdown-menu').forEach(d=>{if(d.id!==except)d.classList.remove('open')});
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.dropdown-wrapper')&&!e.target.closest('.bottom-nav-item'))closeDropdowns();
+});
+
+// ── SEARCH ──
+function doSearch(){
+  const q=document.getElementById('searchInput')?.value||'công ty phần mềm MIBO';
+  window.open('https://www.google.com/search?q='+encodeURIComponent(q||'công ty phần mềm MIBO'),'_blank');
+}
+
+// ── PARTICLES CANVAS ──
+function initParticles(){
+  const canvas=document.getElementById('hero-canvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  let W,H,dots=[];
+  function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight;}
+  resize();window.addEventListener('resize',()=>{resize();init();});
+  function init(){
+    dots=[];
+    for(let i=0;i<60;i++)dots.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,r:Math.random()*2+1});
+  }
+  init();
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    dots.forEach(d=>{d.x+=d.vx;d.y+=d.vy;if(d.x<0||d.x>W)d.vx*=-1;if(d.y<0||d.y>H)d.vy*=-1;
+      ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);ctx.fillStyle='rgba(239,68,68,.7)';ctx.fill();
+    });
+    for(let i=0;i<dots.length;i++)for(let j=i+1;j<dots.length;j++){
+      const dx=dots[i].x-dots[j].x,dy=dots[i].y-dots[j].y,dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<120){ctx.beginPath();ctx.moveTo(dots[i].x,dots[i].y);ctx.lineTo(dots[j].x,dots[j].y);
+        ctx.strokeStyle=`rgba(239,68,68,${.15*(1-dist/120)})`;ctx.lineWidth=.8;ctx.stroke();}
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// ── INTERSECTION OBSERVER (fade-up) ──
+function initFadeUp(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.12});
+  document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded',()=>{
+  renderProductSections();
+  initParticles();
+  setTimeout(initFadeUp,100);
+});
+</script>
 </body>
 </html>
